@@ -1,0 +1,56 @@
+{block head}
+	<script type="text/javascript" src="{$basePath}/js/admin_packaging.js"></script>
+	<script type="text/javascript" src="{$basePath}/js/netteForms.js"></script>
+	<link rel="stylesheet" href="{$basePath}/css/packaging.css" type="text/css">
+{/block}
+
+{block content}
+<div class="edit_cont">
+	<h1>{$reference} - editace položky</h1>
+	{snippet flashMessages}
+	    <div n:foreach="$flashes as $flash" class="leftside flash {$flash->type}">{$flash->message}</div>
+	{/snippet}
+	
+	{form editForm}
+		<div class="editItem" class="leftside">
+			{input create}
+			<input type="button" id="back" value="Zpět" onclick="document.location.href={link Packaging:default}"/>
+			<ul class="errors" n:if="$form->hasErrors()">
+        		<li n:foreach="$form->errors as $error">{$error}</li>
+			</ul>
+			<table class="edit">
+				<thead>
+				<tr>
+					<th>{label title /}</th>
+					<th>{label image /}</th>
+					<th>{label detail /}</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td>{input title value => $editItem->title}</td>
+					<td>{input image}</td>
+					<td>{input detail}</td>
+				</tr>
+				<tr>
+					<td class="title">{$editItem->title}</td>
+					<td><img id="{$editItem->id}" src="{$basePath}{$path}{$editItem->file}" alt="{$editItem->title}" title="{$editItem->title}" /></td>
+					<td><img src="{$basePath}{$path}{$editItem->detail ? $editItem->detail : 'detail_missing.png'}" alt="not inserted" title="{$editItem->title}" /></td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	{/form}
+
+</div>
+{/block}
+
+{block hcontent}
+	<h4>Packaging</h4>
+	<p>Každá položka "packaging" je obsažena v jednom souboru png o rozměru 302x151 px.<br />
+	Tento rozměr vyplývá z navržené struktury krabic.<br />
+	Čb verze(151x151) vlevo a vpravo stejně velká barevná.<br />
+	Je potřeba použít masku, což je víko krabice o rozměru 151x151px a obrázek uložit s transparentním pozadím. Tudíž pouze formát png.</p>
+	<p>Pořadí upravujeme v tabulce pomocí šipek.</p>
+	<p>K dočasnému skrytí položky z veřejné strany webu stačí odkliknout pole "Zobrazit". Smazání položky by bylo nevratnou akcí.</p>
+{/block}

@@ -1,0 +1,40 @@
+{**
+ * shade.cd sign-in layout&template.
+ *
+ * @author Dast
+ *
+ * @param string   $basePath web base path
+ * @param string   $robots   tell robots how to index the content of a page (optional)
+ * @param array    $flashes  flash messages
+ *}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+	<meta name="description" content="Nette Framework web application skeleton">
+	<meta name="robots" content="noindex">
+
+	<title n:snippet=title>{ifset $title}{$title}{/ifset}</title>
+	
+	<link rel="stylesheet" href="{$basePath}/css/styles.css" type="text/css">
+    <link rel="stylesheet" href="{$basePath}/css/admin.css" type="text/css">
+	<link rel="shortcut icon" href="{$basePath}/favicon.ico" type="image/x-icon">
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+</head>
+
+<body>
+    <div id="topbar">
+	</div>
+	<div id="content" class="signin">
+		{control signInForm}
+
+		{snippet flashMessages}
+		    <div n:foreach="$flashes as $flash" class="leftside flash {$flash->type}">{$flash->message}</div>
+		{/snippet}
+	</div>
+
+</body>
+</html>

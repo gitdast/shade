@@ -1,0 +1,206 @@
+body {
+	font:11px/1 "Trebuchet MS", "Geneva CE", lucida, sans-serif;
+	color:#333;
+	background-color:#000000;
+	margin:0 auto;
+	padding:0px;
+	overflow:hidden;	
+}
+
+#topbar{
+	position:relative;
+	background-color:#A8B400;
+	width:100%;
+	height:10px;
+	z-index:1003;
+}
+
+#menucont{
+	position:relative;
+	width:803px;
+	margin:0px auto;
+	text-align:center;
+	z-index:1002;
+}
+#menucont #topmenu{
+	position:relative;
+	margin:10px auto;
+	font-size:14px;
+}
+#menucont #topmenu span{
+	display:inline-block;
+	width:150px;
+	color:#A8B400;
+	font-weight:bold;
+}
+#menucont #topmenu span a:link, #menucont #topmenu span a:visited{
+	color:#3B3B3B;
+	text-decoration:none;
+}
+#menucont #topmenu span a:hover{
+	color:#6B6B6B;
+	text-decoration:underline;
+}
+#menucont #topmenu span a:active{
+	color:#A8B400;
+	text-decoration:none;
+}
+
+
+#menucont #shademenu{
+	position:relative;
+	margin:50px auto;
+}
+#menucont #shademenu #flashContent{
+	position:absolute;
+	top:0px;
+	left:0px;
+}
+#menucont #shademenu .menuItem{
+	display:inline-block;
+	border:0px none;
+	margin:0px;
+	padding:0px;
+	height:151px;
+	line-height:151px;
+	min-width:126px;
+	text-decoration:none;
+	text-align:center;
+	font-weight:bold;
+}
+#menucont #shademenu .menuItem span{
+	position:relative;
+	top:90px;
+}
+
+#menucont #shademenu span.menuItem{
+	color:#A8B400;
+}
+#menucont #shademenu a.menuItem{
+	cursor:pointer;
+}
+#menucont #shademenu a.menuItem:link, #menucont #shademenu a.menuItem:visited{
+	color:#3B3B3B;
+	text-decoration:none;
+}
+#menucont #shademenu a.menuItem:hover, #menucont #shademenu a.menuItem:active{
+	color:#A8B400;
+	text-decoration:none;
+}
+
+#menucont #shademenu #menu-S{
+	width:133px;
+	margin-right:18px;
+	background:url(images/menu-S.png) 0px 155px no-repeat;
+}
+#menucont #shademenu #menu-H{
+	width:147px;
+	margin-right:16px;
+	background:url(images/menu-H.png) 0px 155px no-repeat;
+}
+#menucont #shademenu #menu-A{
+	width:170px;
+	margin-right:15px;
+	background:url(images/menu-A.png) 0px 155px no-repeat;
+}
+#menucont #shademenu #menu-D{
+	width:149px;
+	margin-right:15px;
+	background:url(images/menu-D.png) 0px 155px no-repeat;
+}
+#menucont #shademenu #menu-E{
+	width:126px;
+	background:url(images/menu-E.png) 0px 155px no-repeat;
+}
+#menucont #shademenu #menu-S.active, 
+#menucont #shademenu #menu-H.active,
+#menucont #shademenu #menu-A.active,
+#menucont #shademenu #menu-D.active,
+#menucont #shademenu #menu-E.active{
+	background-position: 0px -302px;
+}
+#menucont #shademenu #menu-S.pasive, 
+#menucont #shademenu #menu-H.pasive,
+#menucont #shademenu #menu-A.pasive,
+#menucont #shademenu #menu-D.pasive,
+#menucont #shademenu #menu-E.pasive{
+	background-position: 0px 0px;
+}
+#menucont #shademenu #menu-S.over, 
+#menucont #shademenu #menu-H.over,
+#menucont #shademenu #menu-A.over,
+#menucont #shademenu #menu-D.over,
+#menucont #shademenu #menu-E.over{
+	background-position: 0px -151px;
+}
+#menucont #shademenu #menu-S.off, 
+#menucont #shademenu #menu-H.off,
+#menucont #shademenu #menu-A.off,
+#menucont #shademenu #menu-D.off,
+#menucont #shademenu #menu-E.off{
+	background-position: 0px 155px;
+}
+
+#containerDown{
+	position:absolute;
+	top:0px;
+	left:0px;
+	overflow:hidden;
+	z-index:1;
+	width:100%;
+	height:1437px;
+}
+
+#containerUp{
+	position:absolute;
+	top:0px;
+	left:0px;
+	overflow:hidden;	
+	z-index:2;
+	width:100%;
+	height:1437px;
+}
+
+.background-{
+	background:url(images/background-black.gif) left no-repeat;
+}
+.background-About{
+	background:url(images/background1.jpg) center no-repeat;
+}
+.background-Contacts{
+	background:url(images/background2.jpg) center no-repeat;
+}
+.background-Services{
+	background:url(images/background3.gif) center no-repeat;
+}
+.background-News{
+	background:url(images/background4.jpg) center no-repeat;
+}
+.background-Clients{
+	background:url(images/background5.jpg) center no-repeat;
+}
+
+.backDown{
+	background-position:50% 240px;
+}
+.backUp{
+	background-position:50% 0px;
+}
+
+.hidden{
+	display:none;
+}
+
+#content{
+	width:800px;
+	height:490px;
+	position:relative;
+	top:1500px;
+	margin:0px auto;
+	padding:25px;
+	z-index:1001;
+	background:url(images/bgd_content.png) top left repeat;
+	text-align:left;
+	font-size:12px;
+	color:#FFF;
+}

@@ -1,0 +1,32 @@
+{block head}
+	<!-- handler pro Help vezmu treba z admin_identities.js, to je jedno odkud -->
+	<script type="text/javascript" src="{$basePath}/js/netteForms.js"></script>
+	<script type="text/javascript" src="{$basePath}/js/admin_identities.js"></script>
+{/block}
+
+{block content}
+
+<h1>Toto je administrační rozhraní webu shade.cd.</h1>
+<br />
+Pokračujte výběrem z menu.
+<script>
+	$(document).ready(function(){
+		$("#topmenu").css('top', -25).animate({ top: 0}, 1000, function(){});
+	})
+</script>
+{snippet flashMessages}
+    <div n:foreach="$flashes as $flash" class="leftside flash {$flash->type}">{$flash->message}</div>
+{/snippet}
+
+	<fieldset class="passchange">
+		<legend>Změna hesla</legend>
+		{control passwordForm}
+	</fieldset>
+	
+{/block}
+
+
+{block hcontent}
+	<h4>Administrace</h4>
+	<p>Nacházíte se v administračním rozhraní.	Vyberte z horního menu sekci, kterou chcete editovat.</p>
+{/block}

@@ -1,0 +1,58 @@
+{block head}
+	<script type="text/javascript" src="{$basePath}/js/netteForms.js"></script>
+	<script type="text/javascript" src="{$basePath}/js/admin_identities.js"></script>
+{/block}
+
+{block content}
+<div class="edit_cont">
+	<h1>{$reference} - editace loga</h1>
+	{snippet flashMessages}
+	    <div n:foreach="$flashes as $flash" class="leftside flash {$flash->type}">{$flash->message}</div>
+	{/snippet}
+	
+	{form editForm}
+		<div class="editItem" class="leftside">
+			{input create}
+			<input type="button" id="back" value="Zpět" onclick="document.location.href={link Identities:default}"/>
+			<ul class="errors" n:if="$form->hasErrors()">
+        		<li n:foreach="$form->errors as $error">{$error}</li>
+			</ul>
+			<table class="edit">
+				<thead>
+				<tr>
+					<th>{label title /}</th>
+					<th>{label image /}</th>
+					<th>{label detail /}</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td>{input title value => $editItem->title}</td>
+					<td>{input image}</td>
+					<td>{input detail}</td>
+				</tr>
+				<tr>
+					<td class="title">{$editItem->title}</td>
+					<td><img id="{$editItem->id}" src="{$basePath}{$path}{$editItem->file}" alt="{$editItem->title}" title="{$editItem->title}" /></td>
+					<td><img src="{$basePath}{$path}{$editItem->detail ? $editItem->detail : 'detail_missing.png'}" alt="not inserted" title="{$editItem->title}" /></td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	{/form}
+
+</div>
+{/block}
+
+{block hcontent}
+	<h4>Identities</h4>
+	<p>Každá položka "identities" je obsažena v jednom souboru png (jpg, gif) o rozměru 160x640 px.<br /> 
+	Ten tvoří čtyři verze téhož loga nad sebou, každá 160x160 px.<br />
+	- První je ČB, pro logo v lichém pořadí - to jest na šedém pozadí.<br />
+	- Druhá je ČB, pro logo v sudém pořadí - to jest na černém pozadí.<br />
+	- Třetí je barevné, normální logo (na bílém pozadí pravděpodobně).<br />
+	- Čtvrá je invezrní logo, barevné.</p>
+	<p>Pokud víte, že inverzní verzi nechcete a nikdy chtít nebude zobrazovat, je možné ji vynechat.</p>
+	<p>Pořadí upravujeme v tabulce pomocí šipek.</p>
+	<p>K dočasnému skrytí položky z veřejné strany webu stačí odkliknout pole "Zobrazit". Smazání položky by bylo nevratnou akcí.</p>
+{/block}

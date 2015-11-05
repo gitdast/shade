@@ -1,0 +1,129 @@
+{**
+ * shade.cd
+ * reference layout template
+ * autor: Dast (dast@seznam.cz)
+ *}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="description" content="Nette Framework web application skeleton">
+	<meta name="robots" content="{$robots}" n:ifset="$robots">
+
+	<title n:snippet=title>{ifset $title}{$title}{/ifset}</title>
+
+	<link rel="stylesheet" href="{$basePath}/css/styles.css" type="text/css">
+	<link rel="stylesheet" href="{$basePath}/css/shade.css" type="text/css">
+    <link rel="stylesheet" href="{$basePath}/css/references.css" type="text/css">
+	<link rel="shortcut icon" href="{$basePath}/favicon_dast.png" type="image/x-icon">
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+    <script type="text/javascript" src="{$basePath}/js/scripts.js"></script>
+	<script type="text/javascript" src="{$basePath}/js/shade.js"></script>
+	<script type="text/javascript" src="{$basePath}/js/ajax.js"></script>
+
+	{block head}{/block}
+</head>
+
+<body>
+	<div id="topbar">
+	</div>
+	
+    <div id="menucont">
+		<div id="topmenu">
+			{foreach $sections as $item}
+				<span><a n:href=":Front:Default:default $item->name">{$item->name}</a></span>
+		    {/foreach}
+		</div>
+	
+		<div id="shademenu">
+        	{if $refname != 'identities'}
+            <a id="menu-S" class="menuItem pasive" n:href="Reference:identities"><span>Identities</span></a>
+            {else} <span id="menu-S" class="menuItem"><span>Identities</span></span>
+            {/if}
+            {if $refname != 'packaging'}
+            <a id="menu-H" class="menuItem pasive" n:href="Reference:packaging"><span>Packaging</span></a>
+            {else} <span id="menu-H" class="menuItem"><span>Packaging</span></span>
+            {/if}
+			{if $refname != 'printposter'}
+            <a id="menu-A" class="menuItem pasive" n:href="Reference:print-poster"><span>Print & Poster</span></a>
+            {else} <span id="menu-A" class="menuItem"><span>Print & Poster</span></span>
+            {/if}
+            {if $refname != 'websites'}
+            <a id="menu-D" class="menuItem pasive" n:href="Reference:websites"><span>Websites</span></a>
+            {else} <span id="menu-D" class="menuItem"><span>Websites</span></span>
+            {/if}
+            {if $refname != 'advertising'}
+            <a id="menu-E" class="menuItem pasive" n:href="Reference:advertising"><span>Advertising</span></a>
+            {else} <span id="menu-E" class="menuItem"><span>Advertising</span></span>
+            {/if}
+            <div id="flashContent">
+				<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="802" height="153" id="AnimMenu" align="middle">
+					<param name="movie" value="{$basePath}/images/AnimMenu.swf" />
+                    <param name="flashVars" value="refname={$refname}" />
+					<param name="quality" value="high" />
+					<param name="bgcolor" value="#ffffff" />
+					<param name="play" value="true" />
+					<param name="loop" value="true" />
+					<param name="wmode" value="transparent" />
+					<param name="scale" value="showall" />
+					<param name="menu" value="true" />
+					<param name="devicefont" value="false" />
+					<param name="salign" value="" />
+					<param name="allowScriptAccess" value="sameDomain" />
+					<!--[if !IE]>-->
+					<object type="application/x-shockwave-flash" data="{$basePath}/images/AnimMenu.swf" width="802" height="153">
+						<param name="movie" value="{$basePath}/images/AnimMenu.swf" />
+                        <param name="flashVars" value="refname={$refname}" />
+						<param name="quality" value="high" />
+						<param name="bgcolor" value="#ffffff" />
+						<param name="play" value="true" />
+						<param name="loop" value="true" />
+						<param name="wmode" value="transparent" />
+						<param name="scale" value="showall" />
+						<param name="menu" value="true" />
+						<param name="devicefont" value="false" />
+						<param name="salign" value="" />
+						<param name="allowScriptAccess" value="sameDomain" />
+					<!--<![endif]-->
+						<a href="http://www.adobe.com/go/getflash">
+							<img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
+						</a>
+					<!--[if !IE]>-->
+					</object>
+					<!--<![endif]-->
+				</object>
+			</div>
+		</div>
+	</div>
+    
+
+	{block content}
+    	{include #content}
+	{/block}
+
+
+	{snippet detailBox}
+	{ifset $detailBox}
+	
+	<div id="detailBox">
+		<div id="img_cont">
+			<a id="close">zavřít</a>
+			<img src="{$detailBox->path}{$detailBox->detail}" alt="{$detailBox->title}" title="{$detailBox->title}" />
+			<div id="title"><span>{$references}:</span>{$detailBox->title}</div>
+		</div>
+	</div>
+	
+	<script>
+		$("#detailBox #img_cont img").load(function(){
+			detailBoxInit();
+			detailBoxBindEvents();
+		})
+	</script>
+	
+	{/ifset}
+	{/snippet}
+
+</body>
+</html>

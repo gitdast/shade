@@ -1,0 +1,30 @@
+@charset "utf-8";
+/* CSS Document for compomenent Advertising */
+
+.advertising{
+	text-align:center;
+}
+
+.advertising .addcont{
+	display:inline-block;
+	width:60px;
+	height:800px;
+	overflow:hidden;
+	padding:0px;
+	margin:0px 10px 0px 0px;
+	position:relative;
+}
+.advertising .addcont img{
+	border:none;
+	margin:0px;
+	position:absolute;
+	top:0px;
+	left:0px;
+	cursor:pointer;
+}
+.advertising .addcont img.black{
+	left:0px;
+}
+.advertising .addcont img.color{
+	left:-60px;
+}

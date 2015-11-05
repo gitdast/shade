@@ -1,0 +1,43 @@
+@charset "utf-8";
+/* CSS Document for compomenent Websites */
+
+.websites{
+	margin:0px auto;
+	padding:0px;
+	width:100%;
+	text-align:center;
+	position:relative;
+/*	overflow:hidden; */
+}
+.websites .panel{
+	margin:0px auto;
+	margin-top:10px;
+	cursor:pointer;
+	white-space:nowrap;
+	text-align:center;
+	position:relative;
+	display:inline-block;
+}
+.websites .itemcont{
+	display:inline-block;
+	width:300px;
+	height:200px;
+	overflow:hidden;
+	padding:0px;
+	margin:0px 5px;
+	position:relative;
+}
+.websites .panel img{
+	border:none;
+	margin:0px;
+	position:absolute;
+	top:0px;
+	left:0px;
+	cursor:pointer;
+}
+.websites .itemcont img.black{
+	top:0px;
+}
+.websites .itemcont img.color{
+	top:-200px;
+}

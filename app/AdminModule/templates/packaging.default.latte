@@ -1,0 +1,61 @@
+{block head}
+	<script type="text/javascript" src="{$basePath}/js/admin_packaging.js"></script>
+	<script type="text/javascript" src="{$basePath}/js/netteForms.js"></script>
+	<link rel="stylesheet" href="{$basePath}/css/packaging.css" type="text/css">
+{/block}
+
+{block content}
+<div class="admin_cont">
+	<h1>{$reference}</h1>
+	<a id="linktopage" n:href=":Front:Reference:packaging">přejít na stránku&gt;&gt;</a>
+	{snippet flashMessages}
+	    <div n:foreach="$flashes as $flash" class="leftside flash {$flash->type}">{$flash->message}</div>
+	{/snippet}
+	<div id="packlist" class="leftside">
+		{snippet packList}
+		<table class="publish">
+			<thead>
+	    	<tr>
+				<th>Název</th>
+				<th>nahoru</th>
+	    	    <th>dolů</th>
+				<th>Zobrazit</th>
+    		    <th>upravit</th>
+        		<th>smazat</th>
+		    </tr>
+    		</thead>
+	    	<tbody>
+			<tr n:foreach="$packList as $pack">
+				<td>{$pack->title}</td>
+				<td class="ico"><a n:if="!$iterator->isFirst()" class="graphic move_up ajax" id="{$pack->id}" n:href="MoveUp! $pack->id, $pack->order" /></td>
+        		<td class="ico"><a n:if="!$iterator->isLast()" class="graphic move_down ajax" id="{$pack->id}" n:href="MoveDown! $pack->id, $pack->order" /></td>
+				<td><input class="ajax" type="checkbox" id="{$pack->id}" {if $pack->display } checked="checked" {/if} /></td>
+	        	<td class="ico"><a class="graphic edit" id="{$pack->id}" n:href="Edit $pack->id" /></td>
+	    	    <td class="ico"><a class="graphic delete ajax" id="{$pack->id}" n:href="Delete! $pack->id" /></td>
+			</tr>
+			</tbody>
+		</table>
+		{/snippet}
+	
+		<fieldset id="upload">
+		    <legend>Nahrát nový packaging</legend>
+    		{control uploadForm}
+		</fieldset>
+	</div>
+
+	{snippet packaging}
+		{control packaging}
+	{/snippet}
+</div>
+
+{/block}
+
+{block hcontent}
+	<h4>Packaging</h4>
+	<p>Každá položka "packaging" je obsažena v jednom souboru png o rozměru 302x151 px.<br />
+	Tento rozměr vyplývá z navržené struktury krabic.<br />
+	Čb verze(151x151) vlevo a vpravo stejně velká barevná.<br />
+	Je potřeba použít masku, což je víko krabice o rozměru 151x151px a obrázek uložit s transparentním pozadím. Tudíž pouze formát png.</p>
+	<p>Pořadí upravujeme v tabulce pomocí šipek.</p>
+	<p>K dočasnému skrytí položky z veřejné strany webu stačí odkliknout pole "Zobrazit". Smazání položky by bylo nevratnou akcí.</p>
+{/block}

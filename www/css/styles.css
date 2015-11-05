@@ -1,0 +1,93 @@
+
+.leftside{float:left;}
+.rightside{float:right;}
+.cleaner{clear:both;}
+
+h1{
+	font-size: 24px;
+	color:#B1C800;
+}
+h2,h3,h4{
+	color:#B1C800;
+}
+
+#detailBox{
+	background-color:rgba(51,51,51,0.85);
+	position:absolute;
+	top:0px;
+	left:0px;
+	z-index:2000;
+	opacity:0; /* zde kvuli iniciaci detailBoxu, kde se nastavuji rozmery, tak v tu chvili je alpha(opacity) nula */	
+}
+#detailBox #img_cont{
+	position:relative;
+	text-align:left;
+	float:left;
+}
+#detailBox #img_cont a#close{
+	position:relative;
+	display:block;
+	float:right;
+	margin-bottom:5px;
+	color:#CCC;
+	cursor:pointer;
+	text-decoration:none;
+}
+#detailBox #img_cont a#close:hover{
+	color:#999;
+	text-decoration:underline;
+}
+#detailBox #img_cont img{
+	display:block;
+}
+#detailBox #img_cont #title{
+	margin-top:5px;
+	color:white;
+	font-size:12px;
+}
+#detailBox #img_cont #title span{
+	color:#999;
+	margin-right:5px;
+}
+
+.transparent{
+	/* Required for IE 5, 6, 7 */
+	/*width: 100%; /* ...or something to trigger hasLayout, like zoom: 1; */
+	zoom:1;
+	/* Theoretically for IE 8 & 9 (more valid) */
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=35)"; 	/* ...but not required as filter works too. Should come BEFORE filter */
+	/* This works in IE 8 & 9 too */
+	/* ... but also 5, 6, 7 */
+	filter: alpha(opacity=35);
+	/* Older than Firefox 0.9 */
+	-moz-opacity:0.35;
+	/* Safari 1.x (pre WebKit!) */
+	-khtml-opacity: 0.35;
+	/* Modern!
+	/* Firefox 0.9+, Safari 2?, Chrome any?
+	/* Opera 9+, IE 9+ */
+	opacity: 0.35;
+}
+
+#ajax-spinner {
+	margin: 15px 0 0 15px;
+	padding: 13px;
+	background: white url('../images/spinner.gif') no-repeat 50% 50%;
+	font-size: 0;
+	z-index: 123456;
+	display: none;
+}
+
+div.flash {
+	color: #E2C822;
+	background: #000000;
+	border: 1px solid #E2C822;
+	padding: 1em;
+	margin: 1em 0;
+	clear:both;
+}
+
+a[href^="error:"]{
+	background: red;
+	color: white;
+}

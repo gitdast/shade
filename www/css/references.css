@@ -1,0 +1,29 @@
+@charset "utf-8";
+/* CSS Document; require styles.css, shade.css */
+
+body {
+	overflow:auto;
+}
+
+#refContent{
+	position:relative;
+	top:0px;
+}
+
+.cont-default{
+	width:800px;
+	text-align:left;
+	margin:0px auto;
+}
+
+.identities{
+	margin:0px auto;
+}
+
+.printPoster{
+	margin:0px auto;
+}
+
+.packaging{
+	margin:0px auto;
+}

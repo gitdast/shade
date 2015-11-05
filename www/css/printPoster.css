@@ -1,0 +1,30 @@
+@charset "utf-8";
+/* CSS Document for compomenent printPoster  */
+
+.printPoster{
+	width:802px;
+	text-align:left;
+}
+
+.printPoster .itemcont{
+	width:802px;
+	height:150px;
+	overflow:hidden;
+	padding:0px;
+	margin:0px 0px 10px 0px;
+	position:relative;
+}
+.printPoster .itemcont img{
+	border:none;
+	margin:0px;
+	position:absolute;
+	top:0px;
+	left:0px;
+	cursor:pointer;
+}
+.printPoster .itemcont img.black{
+	top:0px;
+}
+.printPoster .itemcont img.color{
+	top:-150px;
+}

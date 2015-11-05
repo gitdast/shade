@@ -1,0 +1,349 @@
+body {
+	font:11px/1 "Trebuchet MS", "Geneva CE", lucida, sans-serif;
+	color:#333;
+	background-color:#000000;
+	margin:0 auto;
+	padding:0px;
+	overflow:auto;
+}
+
+#topmenu{
+	position:relative;
+	background-color:#A8B400;
+	font-size:12px;
+	padding:10px;
+	color:#5A6200;
+	z-index:2;
+}
+#topmenu #sections, #topmenu #reference{
+	margin:0px 30px;
+	color:#5A6200;
+}
+
+#topmenu a{
+	display:inline-block;
+	padding:0px 10px;
+	border-right:1px solid #3B3B3B;
+	color:#3B3B3B;
+	font-weight:bold;
+}
+#topmenu span a:last-child{
+	border-right:none;
+}
+
+#topmenu a:link, #topmenu a:visited{
+	color:#000000;
+	text-decoration:none;
+}
+#topmenu a:hover{
+	color:#6B6B6B;
+	text-decoration:underline;
+}
+#topmenu a:active{
+	color:#FFFFFF;
+	text-decoration:none;
+}
+#topmenu a#linktopage{
+	color:#3B3B3B;
+	float:right;
+	border-right:none;
+}
+#topmenu a#linksignout{
+	color:#3B3B3B;
+	float:right;
+}
+
+/* --- content ----- */
+
+#content{
+	position:relative;
+	margin:0px auto;
+	padding:25px 0px 0px 25px;
+	background:#000000;
+	text-align:left;
+	font-size:12px;
+	color:#FFFFFF;
+}
+
+#content a#linktopage{
+	font-size:11px;
+	color:#3B3B3B;
+	text-decoration:none;
+	line-height:24px;
+	margin:20px 10px 0px;
+	display:inline-block;
+	float:left;
+}
+#content a#linktopage:hover{
+	color:#6B6B6B;
+	text-decoration:underline;
+}
+
+table{
+	border-collapse:collapse;
+	border-spacing:0;
+}
+
+table.publish{
+	color:white;
+	font-size:11px;
+}
+table.publish tr:nth-child(even){
+	background-color:#1D1D1D;
+}
+table.publish tr:nth-child(odd){
+	background-color:#000000;
+}
+table.publish td, table.publish th{
+	border:1px solid #666;
+	padding:4px 10px;
+	text-align:center;
+}
+table.publish th{
+	background-color:#999;
+	color:black;
+}
+table.publish td.ico, table.publish th.ico{
+	padding:0px;
+	width:60px;
+}
+
+a.graphic, a.graphic:link{
+	display:inline-block;
+	width:17px;
+	height:17px;
+	overflow:hidden;
+	margin:0px;
+	padding:0px;
+	cursor:pointer;
+	background-position:0px 0px;
+	background-repeat:no-repeat;
+}
+a.graphic:hover{
+	background-position:0px -17px;
+}
+a.move_up{
+	background-image:url(images/ico_up.png);
+}
+a.move_down{
+	background-image:url(images/ico_down.png);
+}
+a.edit{
+	background-image:url(images/ico_edit.png);
+}
+a.delete{
+	background-image:url(images/ico_delete.png);
+}
+
+
+.admin_cont{}
+.admin_cont h1{
+	float:left;
+}
+
+
+.identities{
+	float:left;
+}
+.printPoster{
+	float:left;
+}
+.websites{
+	clear:left;
+}
+.advertising{
+	float:left;
+}
+.packaging{
+	float:left;
+}
+
+#logolist, #itemslist, #pplist, #weblist, #addlist, #packlist{
+	margin-right:30px;
+	margin-bottom:30px;
+	clear:left;
+}
+#logolist #upload, #itemslist #upload, #pplist #upload, #weblist #upload, #addlist #upload, #packlist #upload{
+	margin-top:20px;
+	float:left;
+}
+/* ----- --------- ----- */
+
+
+/* -- sign in page --- */
+#content.signin form{
+	margin: 50px auto;
+    width: 350px;
+}
+#topbar{
+	position:relative;
+	background-color:#A8B400;
+	width:100%;
+	height:10px;
+	z-index:1003;
+}
+/* ----- --------- ----- */
+.passchange{
+	clear:both;
+	float:left;
+	margin-top:35px;
+}
+
+.errors, .error{
+	color:red;
+}
+
+#content .edit_cont{}
+#content .edit_cont h1{
+	float:none;
+}
+
+.edit_cont .editItem{
+	clear:left;
+}
+.edit_cont table.edit{
+	border:1px solid #333;
+}
+.edit_cont table.edit th{
+	border-bottom:1px solid #333;
+	border-right:1px solid #333;
+	padding:10px;
+}
+.edit_cont table.edit td{
+	vertical-align:top;
+	padding:10px;
+	border-right:1px solid #333;
+}
+
+.edit_cont table.edit td.title{
+	color:#A8B400;
+	font-size:24px;
+	font-weight:bold;
+}
+.edit_cont table.edit label{
+	color:#CCC;
+	font-size:11px;
+}
+.edit_cont input[type=submit]{
+	/*position:relative;
+	top:-30px;
+	left:20px;
+	margin-left:20px;
+	color:#708000;*/
+	margin-bottom:5px;
+}
+
+/* ---------------------- sections ----*/
+
+#containerBgd{
+	position:absolute;
+	top:0px;
+	left:0px;
+	overflow:hidden;
+	z-index:1;
+	width:100%;
+	height:1437px;
+	background-position:0px -120px;
+}
+
+.background-{
+	background:url(images/background-black.jpg) left no-repeat;
+}
+.background-About{
+	background:url(images/background1.jpg) center no-repeat;
+}
+.background-Contacts{
+	background:url(images/background2.jpg) center no-repeat;
+}
+.background-Services{
+	background:url(images/background3.jpg) center no-repeat;
+}
+.background-News{
+	background:url(images/background4.jpg) left no-repeat;
+}
+.background-Clients{
+	background:url(images/background5.jpg) center no-repeat;
+}
+
+#section{
+	background: url("images/bgd_content.png") repeat scroll left top transparent;
+	position: relative;
+	margin:20px auto 10px;
+	height:490px;
+	width:800px;
+	z-index:3;
+	padding:25px;
+	text-align:left;
+	color:#FFFFFF;
+    font-size:12px;
+}
+
+#tmce{
+	position:relative;
+	z-index:4;
+	width:850px;
+	margin:0 auto;
+}
+#tmce input[type=file]{
+	float:right;
+}
+#tmce label{
+	float:right;
+	line-height:25px;
+	vertical-align:middle;
+	color:#999;
+	margin-right:5px;
+}
+
+#imgList{
+	position:relative;
+	width:850px;
+	margin:0 auto;
+	z-index:5;
+}
+#imgList fieldset{
+	float:right;
+	clear:both;
+}
+#imgList ul{
+	padding:0px 10px 0px 20px;
+}
+#imgList ul li{
+	padding:5px 0px;
+}
+
+#help{
+	width:300px;
+	background-color:#000;
+	border:1px solid #B1C800;
+	position:absolute;
+	top:50px;
+	right:50px;
+	z-index:10;
+}
+#help #hcontrol{
+	background:url(images/ico_down.png) #B1C800 right top no-repeat;
+	color:#000;
+	line-height:17px;
+	vertical-align:middle;
+	padding-left:5px;
+	cursor:pointer;
+}
+#help #hcontent{
+	display:none;
+	padding:10px;
+	color:#CCC;
+}
+#help #hcontent h4{
+	margin-top:0px;
+	margin-bottom:2px;
+}
+#help #hcontent p{
+	margin-top:0px;
+	margin-bottom:15px;
+	line-height:14px;
+}
+#help #hcontent img{
+	vertical-align:middle;
+}
+

@@ -1,0 +1,33 @@
+@charset "utf-8";
+/* CSS Document for compomenent Packaging */
+
+.packaging{
+	width:1040px;
+	background:#000 url(images/pack_bgd2.png) left top no-repeat;
+	min-height:600px;
+	position:relative;	
+}
+
+.packaging .packcont{
+	width:151px;
+	height:151px;
+	overflow:hidden;
+	padding:0px;
+	margin:0px;
+	position:absolute;
+	float:left;
+}
+.packaging .packcont img{
+	border:none;
+	margin:0px;
+	position:absolute;
+	top:0px;
+	left:0px;
+	cursor:pointer;
+}
+.packaging .packcont img.black{
+	left:0px;
+}
+.packaging .packcont img.color{
+	left:-151px;
+}

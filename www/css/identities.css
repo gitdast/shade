@@ -1,0 +1,37 @@
+@charset "utf-8";
+/* CSS Document for compomenent Identities */
+
+.identities{
+	width:800px;
+	text-align:left;
+}
+
+.identities .logocont{
+	width:160px;
+	height:160px;
+	overflow:hidden;
+	padding:0px;
+	margin:0px;
+	position:relative;
+	float:left;
+}
+.identities .logocont img{
+	border:none;
+	margin:0px;
+	position:absolute;
+	top:0px;
+	left:0px;
+	cursor:pointer;
+}
+.identities .logocont img.grey{
+	top:0px;
+}
+.identities .logocont img.black{
+	top:-160px;
+}
+.identities .logocont img.color{
+	top:-320px;
+}
+.identities .logocont img.white{
+	top:-480px;
+}

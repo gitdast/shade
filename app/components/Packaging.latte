@@ -1,0 +1,29 @@
+
+<script type="text/javascript" src="{$basePath}/js/packaging.js"></script>
+
+<div id="refContent" class="packaging">
+	{for $i = 0; $i < 6; $i++}
+		{if ($pack = $packs->fetch())}
+			<div class="packcont" style="left:{3 + $i*161}px; top:1px;"><img id="{$pack->id}" class="ajax" src="{$basePath}/images/packaging/{$pack->file}" alt="{$pack->title}" title="{$pack->title}" /></div>
+		{else break;}
+		{/if}
+	{/for}
+	{for $i = 0; $i < 6; $i++}
+		{if ($pack = $packs->fetch())}
+			<div class="packcont" style="left:{83 + $i*161}px; top:160px;"><img id="{$pack->id}" class="ajax" src="{$basePath}/images/packaging/{$pack->file}" alt="{$pack->title}" title="{$pack->title}" /></div>
+		{else break;}
+		{/if}
+	{/for}
+	{for $i = 0; $i < 6; $i++}
+		{if ($pack = $packs->fetch())}
+			<div class="packcont" style="left:{3 + $i*161}px; top:320px;"><img id="{$pack->id}" class="ajax" src="{$basePath}/images/packaging/{$pack->file}" alt="{$pack->title}" title="{$pack->title}" /></div>
+		{else break;}
+		{/if}
+	{/for}
+	{for $i = 0; $i < 6; $i++}
+		{if ($pack = $packs->fetch())}
+			<div class="packcont" style="left:{83 + $i*161}px; top:479px;"><img id="{$pack->id}" class="ajax" src="{$basePath}/images/packaging/{$pack->file}" alt="{$pack->title}" title="{$pack->title}" /></div>
+		{else break;}
+		{/if}
+	{/for}
+</div>

@@ -1,0 +1,66 @@
+{block head}
+	<script type="text/javascript" src="{$basePath}/js/admin_identities.js"></script>
+	<script type="text/javascript" src="{$basePath}/js/netteForms.js"></script>
+	<link rel="stylesheet" href="{$basePath}/css/identities.css" type="text/css">
+{/block}
+
+{block content}
+<div class="admin_cont">
+	<h1>{$reference}</h1>
+	<a id="linktopage" n:href=":Front:Reference:identities">přejít na stránku&gt;&gt;</a>
+	{snippet flashMessages}
+	    <div n:foreach="$flashes as $flash" class="leftside flash {$flash->type}">{$flash->message}</div>
+	{/snippet}
+	<div id="logolist" class="leftside">
+		{snippet logosList}
+		<table class="publish">
+			<thead>
+	    	<tr>
+				<th>Název</th>
+				<th>nahoru</th>
+	    	    <th>dolů</th>
+				<th>Zobrazit</th>
+				<th>Zobrazit verzi</th>
+    		    <th>upravit</th>
+        		<th>smazat</th>
+		    </tr>
+    		</thead>
+	    	<tbody>
+			<tr n:foreach="$logosList as $logo">
+				<td>{$logo->title}</td>
+				<td class="ico"><a n:if="!$iterator->isFirst()" class="graphic move_up ajax" id="{$logo->id}" n:href="MoveUp! $logo->id, $logo->order" /></td>
+        		<td class="ico"><a n:if="!$iterator->isLast()" class="graphic move_down ajax" id="{$logo->id}" n:href="MoveDown! $logo->id, $logo->order" /></td>
+				<td><input class="ajax" type="checkbox" id="{$logo->id}" {if $logo->display } checked="checked" {/if} /></td>
+				<td><input class="ajax" type="radio" name="mouseview{$logo->id}" value="color" id="{$logo->id}" {if $logo->mouseview == 'color' } checked="checked" {/if} /> normální |
+					<input class="ajax" type="radio" name="mouseview{$logo->id}" value="white" id="{$logo->id}" {if $logo->mouseview == 'white' } checked="checked" {/if} /> inverzní</td>
+	        	<td class="ico"><a class="graphic edit" id="{$logo->id}" n:href="Edit $logo->id" /></td>
+	    	    <td class="ico"><a class="graphic delete ajax" id="{$logo->id}" n:href="Delete! $logo->id" /></td>
+			</tr>
+			</tbody>
+		</table>
+		{/snippet}
+	
+		<fieldset id="upload">
+		    <legend>Nahrát nové logo</legend>
+    		{control uploadForm}
+		</fieldset>
+	</div>
+
+	{snippet identities}
+		{control identities}
+	{/snippet}
+</div>
+{/block}
+
+{block hcontent}
+	<h4>Identities</h4>
+	<p>Každá položka "identities" je obsažena v jednom souboru png (jpg, gif) o rozměru 160x640 px.<br /> 
+	Ten tvoří čtyři verze téhož loga nad sebou, každá 160x160 px.<br />
+	- První je ČB, pro logo v lichém pořadí - to jest na šedém pozadí.<br />
+	- Druhá je ČB, pro logo v sudém pořadí - to jest na černém pozadí.<br />
+	- Třetí je barevné, normální logo (na bílém pozadí pravděpodobně).<br />
+	- Čtvrá je invezrní logo, barevné.</p>
+	<p>Pokud víte, že inverzní verzi nechcete a nikdy chtít nebude zobrazovat, je možné ji vynechat.</p>
+	<p>Pořadí upravujeme v tabulce pomocí šipek.</p>
+	<p>K dočasnému skrytí položky z veřejné strany webu stačí odkliknout pole "Zobrazit". Smazání položky by bylo nevratnou akcí.</p>
+{/block}

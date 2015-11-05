@@ -1,0 +1,6 @@
+
+<script type="text/javascript" src="{$basePath}/js/printPoster.js"></script>
+
+<div id="refContent" class="printPoster">
+	<div class="itemcont" n:foreach="$items as $item"><img id="{$item->id}" class="ajax" src="{$basePath}/images/printposter/{$item->file}" alt="{$item->title}" title="{$item->title}" /></div>
+</div>

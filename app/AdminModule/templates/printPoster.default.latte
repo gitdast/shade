@@ -1,0 +1,58 @@
+{block head}
+	<script type="text/javascript" src="{$basePath}/js/admin_printPoster.js"></script>
+	<script type="text/javascript" src="{$basePath}/js/netteForms.js"></script>
+	<link rel="stylesheet" href="{$basePath}/css/printPoster.css" type="text/css">
+{/block}
+
+{block content}
+<div class="admin_cont">
+	<h1>{$reference}</h1>
+	<a id="linktopage" n:href=":Front:Reference:printPoster">přejít na stránku&gt;&gt;</a>
+	{snippet flashMessages}
+	    <div n:foreach="$flashes as $flash" class="leftside flash {$flash->type}">{$flash->message}</div>
+	{/snippet}
+	<div id="itemslist" class="leftside">
+		{snippet itemsList}
+		<table class="publish">
+			<thead>
+	    	<tr>
+				<th>Název</th>
+				<th>nahoru</th>
+	    	    <th>dolů</th>
+				<th>Zobrazit</th>
+    		    <th>upravit</th>
+        		<th>smazat</th>
+		    </tr>
+    		</thead>
+	    	<tbody>
+			<tr n:foreach="$itemsList as $item">
+				<td>{$item->title}</td>
+				<td class="ico"><a n:if="!$iterator->isFirst()" class="graphic move_up ajax" id="{$item->id}" n:href="MoveUp! $item->id, $item->order" /></td>
+        		<td class="ico"><a n:if="!$iterator->isLast()" class="graphic move_down ajax" id="{$item->id}" n:href="MoveDown! $item->id, $item->order" /></td>
+				<td><input class="ajax" type="checkbox" id="{$item->id}" {if $item->display } checked="checked" {/if} /></td>
+	        	<td class="ico"><a class="graphic edit" id="{$item->id}" n:href="Edit $item->id" /></td>
+	    	    <td class="ico"><a class="graphic delete ajax" id="{$item->id}" n:href="Delete! $item->id" /></td>
+			</tr>
+			</tbody>
+		</table>
+		{/snippet}
+	
+		<fieldset id="upload">
+		    <legend>Nahrát nový print&poster</legend>
+    		{control uploadForm}
+		</fieldset>
+	</div>
+
+	{snippet printPoster}
+		{control printPoster}
+	{/snippet}
+</div>
+
+{/block}
+
+{block hcontent}
+	<h4>Print & Poster</h4>
+	<p>Každá položka "print&poster" je obsažena v jednom souboru png (jpg, gif) o rozměru 802x300 px.<br /> Čb verze(802x150) nahoře a dole stejně velká barevná.</p>
+	<p>Pořadí upravujeme v tabulce pomocí šipek.</p>
+	<p>K dočasnému skrytí položky z veřejné strany webu stačí odkliknout pole "Zobrazit". Smazání položky by bylo nevratnou akcí.</p>
+{/block}

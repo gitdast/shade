@@ -1,0 +1,72 @@
+{**
+ * shade.cd layout template.
+ *
+ * @author Dast
+ *
+ * @param string   $basePath web base path
+ * @param string   $robots   tell robots how to index the content of a page (optional)
+ * @param array    $flashes  flash messages
+ *}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+	<meta name="description" content="Nette Framework web application skeleton">
+	<meta name="robots" content="{$robots}" n:ifset="$robots">
+
+	<title n:snippet=title>{ifset $title}{$title}{/ifset}</title>
+	
+	<link rel="stylesheet" href="{$basePath}/css/styles.css" type="text/css">
+    <link rel="stylesheet" href="{$basePath}/css/admin.css" type="text/css">
+	<link rel="shortcut icon" href="{$basePath}/favicon_dast.png" type="image/x-icon">
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+	<script type="text/javascript" src="{$basePath}/js/scripts.js"></script>
+	<script type="text/javascript" src="{$basePath}/js/ajax.js"></script>
+
+	{block head}{/block}
+</head>
+
+<body>
+    
+	<div id="topmenu">
+    	<span><a n:href="Default:default">Administrace</a></span>
+        <span id="reference">
+        	<span>Reference:</span>
+			<a n:href="Identities:default"><span>Identities</span></a>
+			<a n:href="Packaging:default"><span>Packaging</span></a>
+			<a n:href="PrintPoster:default"><span>Print & Poster</span></a>
+			<a n:href="Websites:default"><span>Websites</span></a>
+			<a n:href="Advertising:default"><span>Advertising</span></a>
+		</span>
+        <span id="sections">
+        	<span>Sekce:</span>
+	        <a n:href="Section:about">About</a>
+    	    <a n:href="Section:services">Services</a>
+        	<a n:href="Section:news">News</a>
+	        <a n:href="Section:clients">Clients</a>
+    	    <a n:href="Section:contacts">Contacts</a>
+		</span>
+		<a id="linktopage" n:href=":Front:Default:default">přejít na homepage&gt;&gt;</a>
+		<a id="linksignout" n:href="SignOut!">odhlásit</a>
+		<span class="rightside">{$username}</span>
+	</div>
+	
+	<div id="content">
+		{include #content}
+	</div>
+	
+	<div id="help" style="width:370px;">
+		<div id="hcontrol">
+			<span>Help</span>
+		</div>
+		
+		<div id="hcontent">
+			{include #hcontent}
+		</div>
+	</div>
+
+</body>
+</html>

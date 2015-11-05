@@ -1,0 +1,58 @@
+{block head}
+	<script type="text/javascript" src="{$basePath}/js/admin_advertising.js"></script>
+	<script type="text/javascript" src="{$basePath}/js/netteForms.js"></script>
+	<link rel="stylesheet" href="{$basePath}/css/advertising.css" type="text/css">
+{/block}
+
+{block content}
+<div class="admin_cont">
+	<h1>{$reference}</h1>
+	<a id="linktopage" n:href=":Front:Reference:advertising">přejít na stránku&gt;&gt;</a>
+	{snippet flashMessages}
+	    <div n:foreach="$flashes as $flash" class="leftside flash {$flash->type}">{$flash->message}</div>
+	{/snippet}
+	<div id="addlist" class="leftside">
+		{snippet addList}
+		<table class="publish">
+			<thead>
+	    	<tr>
+				<th>Název</th>
+				<th>nahoru</th>
+	    	    <th>dolů</th>
+				<th>Zobrazit</th>
+    		    <th>upravit</th>
+        		<th>smazat</th>
+		    </tr>
+    		</thead>
+	    	<tbody>
+			<tr n:foreach="$addList as $add">
+				<td>{$add->title}</td>
+				<td class="ico"><a n:if="!$iterator->isFirst()" class="graphic move_up ajax" id="{$add->id}" n:href="MoveUp! $add->id, $add->order" /></td>
+        		<td class="ico"><a n:if="!$iterator->isLast()" class="graphic move_down ajax" id="{$add->id}" n:href="MoveDown! $add->id, $add->order" /></td>
+				<td><input class="ajax" type="checkbox" id="{$add->id}" {if $add->display } checked="checked" {/if} /></td>
+	        	<td class="ico"><a class="graphic edit" id="{$add->id}" n:href="Edit $add->id" /></td>
+	    	    <td class="ico"><a class="graphic delete ajax" id="{$add->id}" n:href="Delete! $add->id" /></td>
+			</tr>
+			</tbody>
+		</table>
+		{/snippet}
+	
+		<fieldset id="upload">
+		    <legend>Nahrát nový add</legend>
+    		{control uploadForm}
+		</fieldset>
+	</div>
+
+	{snippet advertising}
+		{control advertising}
+	{/snippet}
+</div>
+
+{/block}
+
+{block hcontent}
+	<h4>Advertising</h4>
+	<p>Každá položka "advertising" je obsažena v jednom souboru png (jpg, gif) o rozměru 120x800 px.<br /> Čb verze(60x800) vlevo a vpravo stejně velká barevná.</p>
+	<p>Pořadí upravujeme v tabulce pomocí šipek.</p>
+	<p>K dočasnému skrytí položky z veřejné strany webu stačí odkliknout pole "Zobrazit". Smazání položky by bylo nevratnou akcí.</p>
+{/block}

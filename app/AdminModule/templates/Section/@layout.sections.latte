@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+	<meta name="description" content="Nette Framework web application skeleton">
+	<meta name="robots" content="{$robots}" n:ifset="$robots">
+
+	<title n:snippet=title>{ifset $title}{$title}{/ifset}</title>
+
+	<link rel="stylesheet" href="{$basePath}/css/styles.css" type="text/css">
+    <link rel="stylesheet" href="{$basePath}/css/admin.css" type="text/css">
+	<link rel="shortcut icon" href="{$basePath}/favicon_dast.png" type="image/x-icon">
+	
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+	<script type="text/javascript" src="{$basePath}/js/scripts.js"></script>
+	<script type="text/javascript" src="{$basePath}/js/ajax.js"></script>
+	<script type="text/javascript" src="{$basePath}/js/admin_sections.js"></script>
+	<script type="text/javascript" src="{$basePath}/js/netteForms.js"></script>
+	<script type="text/javascript" src="{$basePath}/js/tinymce/jscripts/tiny_mce/tiny_mce.js"></script>
+
+	{block head}{/block}
+</head>
+
+<body>
+	<div id="containerBgd" class="background-{$section}">
+    </div>
+    
+	<div id="topmenu">
+    	<span><a n:href="Default:default">Administrace</a></span>
+        <span id="reference">
+        	<span>Reference:</span>
+			<a n:href="Identities:default"><span>Identities</span></a>
+			<a n:href="Packaging:default"><span>Packaging</span></a>
+			<a n:href="PrintPoster:default"><span>Print & Poster</span></a>
+			<a n:href="Websites:default"><span>Websites</span></a>
+			<a n:href="Advertising:default"><span>Advertising</span></a>
+		</span>
+        <span id="sections">
+        	<span>Sekce:</span>
+	        <a n:href="Section:about">About</a>
+    	    <a n:href="Section:services">Services</a>
+        	<a n:href="Section:news">News</a>
+	        <a n:href="Section:clients">Clients</a>
+    	    <a n:href="Section:contacts">Contacts</a>
+		</span>
+		<a id="linktopage" n:href=":Front:Default:default">přejít na homepage&gt;&gt;</a>
+		<a id="linksignout" n:href="SignOut!">odhlásit</a>
+	</div>
+		
+	<div id="section">
+		{include #section}
+	</div>
+	
+	<div id="tmce">
+		{form contentForm}
+			{input cont}			
+			{input save}{input image}{label image /}
+		{/form}
+	</div>
+	<div id="imgList">
+		<fieldset>
+			<legend>seznam nahraných obrázků</legend>
+			<ul>
+				<li n:foreach="$imgList as $imgfile">{$imgfile}</li>
+			</ul>
+		</fieldset>
+	</div>
+	<div id="help">
+		<div id="hcontrol">
+			<span>Help</span>
+		</div>
+		<div id="hcontent">
+			<p>K editaci obsahu sekce použijte WYSIWYG editor pod náhledem sekce.</p>
+			<h4>Nadpisy</h4>
+			<p>Nadpisy h1 až h4 mají barvu zelenou, text bílou.</p>
+			<h4>Odkaz</h4>
+			<p>K vytvoření odkazu slouží nástroj Link <img src="/css/images/ico_link.png" width="22" height="22" />.</p>
+			<h4>Obrázek</h4>
+			<p>K vložení obrázku slouží nástroj Image <img src="/css/images/ico_img.png" width="22" height="22" />.</p>
+			<p>V dialogovém okně obrázku zadejte soubor s obrázkem.<br />(je potřeba respektovat umístění obrázků ve složce "images", tzn. název souboru bude vypadat "/images/název souboru")</p>
+			<p><img src="/css/images/help_img_prop.png" width="262" height="234" /></p>
+			<p>Pozice obrázku se upraví snadno pomocí zarovnání "Left" nebo "Right" a nastavením odsazení svislého "vspace" a vodorovného "hspace". </p>
+			<h4>Upload obrázků na server</h4>
+			<p>Do obsahu můžete samozřejmě vkládat jen obrázky dostupné na serveru. Jejich seznam je na této stránce dole. Nový obrázek z počítače nahrajete na server pomocí pole "nahrát nový obrázek na server".<br />Po kliknutí "Uložit" se stránka uloží a vybraný obrázek se nahraje na server.</p>
+		</div>
+	</div>
+
+</body>
+</html>
