@@ -51,12 +51,5 @@ $(document).ready(function(){
 	        });
     	}).hide();
 	});
-	
-	$(window).resize(function(){
-		if($("#detailBox").length > 0){
-			detailBoxInit();
-		}
-	});
-	
 })
 

@@ -17,7 +17,13 @@ final class IdentitiesPresenter extends BasePresenter{
 	public $refname = "identities";
 	
 	public function actionDefault(){
-		$this->logosList = $this->context->createLogos()->order('order');
+		$this->logosList = $this->context->createLogos()->order('order DESC');
+	}
+	
+	public function renderDefault(){
+		$this->template->logosList = $this->logosList;
+		//$this->template->reference = substr($this->getName(),strrpos($this->getName(),':')+1);
+		$this->template->reference = $this->context->createReferences()->select('name')->where('refname', $this->refname)->fetch()->name;
 	}
 	
 	public function actionEdit($editid){
@@ -25,6 +31,11 @@ final class IdentitiesPresenter extends BasePresenter{
 		$this->template->editItem = $this->context->createLogos()->get($editid);
 	}
 	
+	public function renderEdit(){
+		$this->template->reference = $this->context->createReferences()->select('name')->where('refname', $this->refname)->fetch()->name;
+		$this->template->path = "/images/".$this->refname."/";
+	}
+
 	public function handleChangeDisplay($logoid, $checked){
 		if($this->presenter->isAjax()){
 			$this->context->createLogos()->where(array('id' => $logoid))->update(array('display' => $checked));
@@ -44,12 +55,12 @@ final class IdentitiesPresenter extends BasePresenter{
 	public function handleMoveUp($logoid, $order){
 		if($this->presenter->isAjax()){
 			$prev_order = $this->context->createLogos()->where('order < ?', intval($order))->max('order');
-			$prev_row = $this->context->createLogos()->where('order',$prev_order)->fetch();
+			$prev_row = $this->context->createLogos()->where('order', $prev_order)->fetch();
 			$prev_id = $prev_row["id"];
 			$this->context->createLogos()->get($logoid)->update(array('order' => $prev_order));
 			$this->context->createLogos()->get($prev_id)->update(array('order' => intval($order)));
 
-			$this->template->logosList = $this->context->createLogos()->order('order');
+			$this->template->logosList = $this->context->createLogos()->order('order DESC');
 			$this->invalidateControl("identities");
 			$this->invalidateControl("logosList");
 			$this->invalidateControl('flashMessages');
@@ -64,7 +75,7 @@ final class IdentitiesPresenter extends BasePresenter{
 			$this->context->createLogos()->get($logoid)->update(array('order' => $next_order));
 			$this->context->createLogos()->get($next_id)->update(array('order' => intval($order)));
 
-			$this->template->logosList = $this->context->createLogos()->order('order');
+			$this->template->logosList = $this->context->createLogos()->order('order DESC');
 			$this->invalidateControl("identities");
 			$this->invalidateControl("logosList");
 			$this->invalidateControl('flashMessages');
@@ -83,7 +94,7 @@ final class IdentitiesPresenter extends BasePresenter{
 			}
 			$logo->delete();
 			$this->flashMessage('Logo bylo smazáno.');
-			$this->template->logosList = $this->context->createLogos()->order('order');
+			$this->template->logosList = $this->context->createLogos()->order('order DESC');
 			$this->invalidateControl("identities");
 			$this->invalidateControl("logosList");
 		}else{
@@ -95,7 +106,7 @@ final class IdentitiesPresenter extends BasePresenter{
 	public function handleShowDetail($showid){}
 	
 	protected function createComponentIdentities(){
-		return new \Identities($this->context->createLogos()->where('display = 1')->order('order'));
+		return new \Identities($this->context->createLogos()->where('display = 1')->order('order DESC'));
 	}
 	
 	protected function createComponentUploadForm(){
@@ -158,17 +169,6 @@ final class IdentitiesPresenter extends BasePresenter{
 	    return $form;
 	}
 	
-	public function renderEdit(){
-		$this->template->reference = $this->context->createReferences()->select('name')->where('refname', $this->refname)->fetch()->name;
-		$this->template->path = "/images/".$this->refname."/";
-	}
-
-	public function renderDefault(){
-		$this->template->logosList = $this->logosList;
-		//$this->template->reference = substr($this->getName(),strrpos($this->getName(),':')+1);
-		$this->template->reference = $this->context->createReferences()->select('name')->where('refname', $this->refname)->fetch()->name;
-	}
-
 }
 
 ?>

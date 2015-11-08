@@ -17,12 +17,22 @@ final class PackagingPresenter extends BasePresenter{
 	public $refname = "packaging";
 	
 	public function actionDefault(){
-		$this->packList = $this->context->createPacks()->order('order');
+		$this->packList = $this->context->createPacks()->order('order DESC');
+	}
+	
+	public function renderDefault(){
+		$this->template->packList = $this->packList;
+		$this->template->reference = $this->context->createReferences()->select('name')->where('refname', $this->refname)->fetch()->name;
 	}
 	
 	public function actionEdit($editid){
 		$this->editId = $editid;
 		$this->template->editItem = $this->context->createPacks()->get($editid);
+	}
+	
+	public function renderEdit(){
+		$this->template->reference = $this->context->createReferences()->select('name')->where('refname', $this->refname)->fetch()->name;
+		$this->template->path = "/images/".$this->refname."/";
 	}
 	
 	public function handleChangeDisplay($packid, $checked){
@@ -41,7 +51,7 @@ final class PackagingPresenter extends BasePresenter{
 			$this->context->createPacks()->get($packid)->update(array('order' => $prev_order));
 			$this->context->createPacks()->get($prev_id)->update(array('order' => intval($order)));
 
-			$this->template->packList = $this->context->createPacks()->order('order');
+			$this->template->packList = $this->context->createPacks()->order('order DESC');
 			$this->invalidateControl("packaging");
 			$this->invalidateControl("packList");
 			$this->invalidateControl('flashMessages');
@@ -56,7 +66,7 @@ final class PackagingPresenter extends BasePresenter{
 			$this->context->createPacks()->get($packid)->update(array('order' => $next_order));
 			$this->context->createPacks()->get($next_id)->update(array('order' => intval($order)));
 
-			$this->template->packList = $this->context->createPacks()->order('order');
+			$this->template->packList = $this->context->createPacks()->order('order DESC');
 			$this->invalidateControl("packaging");
 			$this->invalidateControl("packList");
 			$this->invalidateControl('flashMessages');
@@ -74,7 +84,7 @@ final class PackagingPresenter extends BasePresenter{
 			}
 			$pp->delete();
 			$this->flashMessage('Packaging byl smazán.');
-			$this->template->packList = $this->context->createPacks()->order('panel')->order('order');
+			$this->template->packList = $this->context->createPacks()->order('order DESC');
 			$this->invalidateControl("packaging");
 			$this->invalidateControl("packList");
 		}else{
@@ -86,7 +96,7 @@ final class PackagingPresenter extends BasePresenter{
 	public function handleShowDetail($showid){}
 	
 	protected function createComponentPackaging(){
-		return new \Packaging($this->context->createPacks()->where('display = 1')->order('order'));
+		return new \Packaging($this->context->createPacks()->where('display = 1')->order('order DESC'));
 	}
 	
 	protected function createComponentUploadForm(){
@@ -147,16 +157,6 @@ final class PackagingPresenter extends BasePresenter{
 		$form->editId = $this->editId;
 		$form->table = $this->context->createPacks();
 	    return $form;
-	}
-	
-	public function renderEdit(){
-		$this->template->reference = $this->context->createReferences()->select('name')->where('refname', $this->refname)->fetch()->name;
-		$this->template->path = "/images/".$this->refname."/";
-	}
-
-	public function renderDefault(){
-		$this->template->packList = $this->packList;
-		$this->template->reference = $this->context->createReferences()->select('name')->where('refname', $this->refname)->fetch()->name;
 	}
 
 }

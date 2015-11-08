@@ -17,13 +17,24 @@ final class WebsitesPresenter extends BasePresenter{
 	public $refname = "websites";
 	
 	public function actionDefault(){
-		$this->itemsList = $this->context->createWebs()->order('panel')->order('order');
+		$this->itemsList = $this->context->createWebs()->order('order DESC');
 	}
 	
+	public function renderDefault(){
+		$this->template->itemsList = $this->itemsList;
+		$this->template->reference = $this->context->createReferences()->select('name')->where('refname', $this->refname)->fetch()->name;
+	}
+
 	public function actionEdit($editid){
 		$this->editId = $editid;
 		$this->template->editItem = $this->context->createWebs()->get($editid);
 	}
+	
+	public function renderEdit(){
+		$this->template->reference = $this->context->createReferences()->select('name')->where('refname', $this->refname)->fetch()->name;
+		$this->template->path = "/images/".$this->refname."/";
+	}
+
 	
 	public function handleChangeDisplay($itemid, $checked){
 		if($this->presenter->isAjax()){
@@ -33,20 +44,15 @@ final class WebsitesPresenter extends BasePresenter{
 		}
 	}
 	
-	public function handleMoveUp($itemid, $order, $panel){
+	public function handleMoveUp($itemid, $order){
 		if($this->presenter->isAjax()){
-			$prev_order = $this->context->createWebs()->where('panel', $panel)->where('order < ?', intval($order))->max('order');
-			if(count($prev_order)){
-				$prev_row = $this->context->createWebs()->where('panel', $panel)->where('order',$prev_order)->fetch();
-				$prev_id = $prev_row["id"];
-				$this->context->createWebs()->get($itemid)->update(array('order' => $prev_order));
-				$this->context->createWebs()->get($prev_id)->update(array('order' => intval($order)));
-			}else{
-				$max_order = $this->context->createWebs()->where('panel != ?', $panel)->max('order');
-				$this->context->createWebs()->get($itemid)->update(array('order' => $max_order+1, 'panel' => $panel-1));
-			}
+			$prev_order = $this->context->createWebs()->where('order < ?', intval($order))->max('order');
+			$prev_row = $this->context->createWebs()->where('order', $prev_order)->fetch();
+			$prev_id = $prev_row["id"];
+			$this->context->createWebs()->get($itemid)->update(array('order' => $prev_order));
+			$this->context->createWebs()->get($prev_id)->update(array('order' => intval($order)));
 
-			$this->template->itemsList = $this->context->createWebs()->order('panel')->order('order');
+			$this->template->itemsList = $this->context->createWebs()->order('order DESC');
 			$this->invalidateControl("websites");
 			$this->invalidateControl("itemsList");
 			$this->invalidateControl('flashMessages');
@@ -55,18 +61,13 @@ final class WebsitesPresenter extends BasePresenter{
 	
 	public function handleMoveDown($itemid, $order, $panel){
 		if($this->presenter->isAjax()){
-			$next_order = $this->context->createWebs()->where('panel', $panel)->where('order > ?', intval($order))->min('order');
-			if(count($next_order)){
-				$next_row = $this->context->createWebs()->where('panel', $panel)->where('order',$next_order)->fetch();
-				$next_id = $next_row["id"];
-				$this->context->createWebs()->get($itemid)->update(array('order' => $next_order));
-				$this->context->createWebs()->get($next_id)->update(array('order' => intval($order)));
-			}else{
-				$min_order = $this->context->createWebs()->where('panel != ?', $panel)->min('order');
-				$this->context->createWebs()->get($itemid)->update(array('order' => $min_order-1, 'panel' => $panel+1));
-			}
+			$next_order = $this->context->createWebs()->where('order > ?', intval($order))->min('order');
+			$next_row = $this->context->createWebs()->where('order', $next_order)->fetch();
+			$next_id = $next_row["id"];
+			$this->context->createWebs()->get($itemid)->update(array('order' => $next_order));
+			$this->context->createWebs()->get($next_id)->update(array('order' => intval($order)));
 
-			$this->template->itemsList = $this->context->createWebs()->order('panel')->order('order');
+			$this->template->itemsList = $this->context->createWebs()->order('order DESC');
 			$this->invalidateControl("websites");
 			$this->invalidateControl("itemsList");
 			$this->invalidateControl('flashMessages');
@@ -84,7 +85,7 @@ final class WebsitesPresenter extends BasePresenter{
 			}
 			$pp->delete();
 			$this->flashMessage('Web byl smazán.');
-			$this->template->itemsList = $this->context->createWebs()->order('panel')->order('order');
+			$this->template->itemsList = $this->context->createWebs()->order('order DESC');
 			$this->invalidateControl("websites");
 			$this->invalidateControl("itemsList");
 		}else{
@@ -96,9 +97,8 @@ final class WebsitesPresenter extends BasePresenter{
 	public function handleShowDetail($showid){}
 	
 	protected function createComponentWebsites(){
-		$p1 = $this->context->createWebs()->where('display = 1')->where('panel', 1)->order('order');
-		$p2 = $this->context->createWebs()->where('display = 1')->where('panel', 2)->order('order');
-		return new \Websites($p1, $p2);
+		$res = $this->context->createWebs()->where('display = 1')->order('order DESC');
+		return new \Websites($res);
 	}
 	
 	protected function createComponentUploadForm(){
@@ -161,16 +161,6 @@ final class WebsitesPresenter extends BasePresenter{
 	    return $form;
 	}
 	
-	public function renderEdit(){
-		$this->template->reference = $this->context->createReferences()->select('name')->where('refname', $this->refname)->fetch()->name;
-		$this->template->path = "/images/".$this->refname."/";
-	}
-
-	public function renderDefault(){
-		$this->template->itemsList = $this->itemsList;
-		$this->template->reference = $this->context->createReferences()->select('name')->where('refname', $this->refname)->fetch()->name;
-	}
-
 }
 
 ?>

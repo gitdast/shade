@@ -1,14 +1,7 @@
-body {
-	font:11px/1 "Trebuchet MS", "Geneva CE", lucida, sans-serif;
-	color:#333;
-	background-color:#000000;
-	margin:0 auto;
-	padding:0px;
-	overflow:hidden;	
-}
 
 #topbar{
-	position:relative;
+	position:fixed;
+	top:0px;
 	background-color:#A8B400;
 	width:100%;
 	height:10px;
@@ -17,8 +10,8 @@ body {
 
 #menucont{
 	position:relative;
-	width:803px;
 	margin:0px auto;
+	margin-top:20px;
 	text-align:center;
 	z-index:1002;
 }
@@ -26,10 +19,11 @@ body {
 	position:relative;
 	margin:10px auto;
 	font-size:14px;
+	white-space:nowrap;
 }
 #menucont #topmenu span{
 	display:inline-block;
-	width:150px;
+	padding:0px 60px;
 	color:#A8B400;
 	font-weight:bold;
 }
@@ -39,7 +33,7 @@ body {
 }
 #menucont #topmenu span a:hover{
 	color:#6B6B6B;
-	text-decoration:underline;
+	text-decoration:none;
 }
 #menucont #topmenu span a:active{
 	color:#A8B400;
@@ -50,6 +44,7 @@ body {
 #menucont #shademenu{
 	position:relative;
 	margin:50px auto;
+	width:803px;
 }
 #menucont #shademenu #flashContent{
 	position:absolute;
@@ -67,10 +62,11 @@ body {
 	text-decoration:none;
 	text-align:center;
 	font-weight:bold;
+	font-size:14px;
 }
 #menucont #shademenu .menuItem span{
 	position:relative;
-	top:90px;
+	top:93px;
 }
 
 #menucont #shademenu span.menuItem{
@@ -142,7 +138,7 @@ body {
 }
 
 #containerDown{
-	position:absolute;
+	position:fixed;
 	top:0px;
 	left:0px;
 	overflow:hidden;
@@ -152,7 +148,7 @@ body {
 }
 
 #containerUp{
-	position:absolute;
+	position:fixed;
 	top:0px;
 	left:0px;
 	overflow:hidden;	
@@ -193,7 +189,7 @@ body {
 
 #content{
 	width:800px;
-	height:490px;
+	/*height:490px;*/
 	position:relative;
 	top:1500px;
 	margin:0px auto;
@@ -203,4 +199,9 @@ body {
 	text-align:left;
 	font-size:12px;
 	color:#FFF;
+}
+
+#content.text{
+	font-family:"museo", "Trebuchet MS", "Geneva CE", lucida, sans-serif !important;
+	line-height: 1.7;
 }

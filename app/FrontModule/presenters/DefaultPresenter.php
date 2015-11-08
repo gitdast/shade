@@ -18,10 +18,10 @@ final class DefaultPresenter extends BasePresenter{
 	
 	public function handleSectionClick($section, $secOld){
 		if($this->presenter->isAjax()){
-			$sec = $this->context->createSections()->where(array('name' => $section));
+			$sec = $this->context->createSections()->where(array('webname' => $section));
 			$newId = $sec->fetch()->id;
 			if($secOld != ''){
-				$sec = $this->context->createSections()->where(array('name' => $secOld));
+				$sec = $this->context->createSections()->where(array('webname' => $secOld));
 				$oldId = $sec->fetch()->id;
 				$this->payload->operation = 'sectionChange';
 			}else{
@@ -43,7 +43,7 @@ final class DefaultPresenter extends BasePresenter{
 	}
 	
 	public function getContent(){
-		$row = $this->context->createSections()->where(array('name' => $this->section));
+		$row = $this->context->createSections()->where(array('webname' => $this->section));
 		return $row->fetch()->sectiontext;
 	}
 

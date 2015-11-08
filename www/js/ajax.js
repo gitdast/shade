@@ -57,7 +57,7 @@ jQuery.ajaxSetup({
 });
 
 
-$("a.ajax").live("click", function (event) {
+$("body").on("click", "a.ajax", function(event){
     event.preventDefault();
     $.get(this.href);
 	
@@ -70,7 +70,7 @@ $("a.ajax").live("click", function (event) {
     });
 });
 
-$("input.ajax").live("click", function (event) {
+$("body").on("click", "input.ajax", function(event){
     $("#ajax-spinner").show().css({
         position: "absolute",
         //left: event.pageX + 20,

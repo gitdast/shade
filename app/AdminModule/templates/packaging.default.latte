@@ -27,8 +27,8 @@
 	    	<tbody>
 			<tr n:foreach="$packList as $pack">
 				<td>{$pack->title}</td>
-				<td class="ico"><a n:if="!$iterator->isFirst()" class="graphic move_up ajax" id="{$pack->id}" n:href="MoveUp! $pack->id, $pack->order" /></td>
-        		<td class="ico"><a n:if="!$iterator->isLast()" class="graphic move_down ajax" id="{$pack->id}" n:href="MoveDown! $pack->id, $pack->order" /></td>
+				<td class="ico"><a n:if="!$iterator->isFirst()" class="graphic move_up ajax" id="{$pack->id}" n:href="MoveDown! $pack->id, $pack->order" /></td>
+        		<td class="ico"><a n:if="!$iterator->isLast()" class="graphic move_down ajax" id="{$pack->id}" n:href="MoveUp! $pack->id, $pack->order" /></td>
 				<td><input class="ajax" type="checkbox" id="{$pack->id}" {if $pack->display } checked="checked" {/if} /></td>
 	        	<td class="ico"><a class="graphic edit" id="{$pack->id}" n:href="Edit $pack->id" /></td>
 	    	    <td class="ico"><a class="graphic delete ajax" id="{$pack->id}" n:href="Delete! $pack->id" /></td>

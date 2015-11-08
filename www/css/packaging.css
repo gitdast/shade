@@ -3,9 +3,9 @@
 
 .packaging{
 	width:1040px;
-	background:#000 url(images/pack_bgd2.png) left top no-repeat;
-	min-height:600px;
-	position:relative;	
+	background:#000 url(images/pack_bgd.png) left top no-repeat;
+	/*min-height:600px;*/
+	position:relative;
 }
 
 .packaging .packcont{
@@ -15,7 +15,7 @@
 	padding:0px;
 	margin:0px;
 	position:absolute;
-	float:left;
+	/*float:left;*/
 }
 .packaging .packcont img{
 	border:none;

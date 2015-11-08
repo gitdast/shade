@@ -37,28 +37,27 @@ final class ReferencePresenter extends BasePresenter{
 	}
 	
 	protected function createComponentIdentities(){
-		return new \Identities($this->context->createLogos()->where('display = 1')->order('order'));
+		return new \Identities($this->context->createLogos()->where('display = 1')->order('order DESC'));
 	}
 	
 	protected function createComponentWebsites(){
-		$p1 = $this->context->createWebs()->where('display = 1')->where('panel', 1)->order('order');
-		$p2 = $this->context->createWebs()->where('display = 1')->where('panel', 2)->order('order');
-		return new \Websites($p1, $p2);
+		$res = $this->context->createWebs()->where('display = 1')->order('order DESC');
+		return new \Websites($res);
 	}
 	
 	protected function createComponentPrintPoster(){
-		return new \PrintPoster($this->context->createPrints()->where('display = 1')->order('order'));
+		return new \PrintPoster($this->context->createPrints()->where('display = 1')->order('order DESC'));
 	}
 	
 	protected function createComponentPackaging(){
-		return new \Packaging($this->context->createPacks()->where('display = 1')->order('order'));
+		return new \Packaging($this->context->createPacks()->where('display = 1')->order('order DESC'));
 	}
 	
 	protected function createComponentAdvertising(){
-		return new \Advertising($this->context->createAdds()->where('display = 1')->order('order'));
+		return new \Advertising($this->context->createAdds()->where('display = 1')->order('order DESC'));
 	}
 
-
+	/* not used anymore, snippet deleted from layout */
 	public function handleShowDetail($showid){
 		if($this->presenter->isAjax()){
 			switch($this->refname){

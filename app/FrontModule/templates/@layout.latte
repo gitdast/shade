@@ -12,7 +12,6 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
 	<meta name="description" content="Nette Framework web application skeleton">
 	<meta name="robots" content="{$robots}" n:ifset="$robots">
 
@@ -51,8 +50,8 @@
 		<div id="topmenu">
         	{snippet topmenu}
 			{foreach $sections as $item}
-            	{if $item->name !== $section}
-				<span><a class="ajax" n:href="SectionClick! $item->name, $section">{$item->name}</a></span>
+            	{if $item->webname !== $section}
+				<span><a class="ajax" n:href="SectionClick! $item->webname, $section">{$item->name}</a></span>
                 {else}
                 <span>{$item->name}</span>
                 {/if}
@@ -61,11 +60,11 @@
 		</div>
 	
 		<div id="shademenu">
-        	<a id="menu-S" class="menuItem" n:href="Reference:identities"><span>Identities</span></a>
-            <a id="menu-H" class="menuItem" n:href="Reference:packaging"><span>Packaging</span></a>
-            <a id="menu-A" class="menuItem" n:href="Reference:print-poster"><span>Print & Poster</span></a>
-            <a id="menu-D" class="menuItem" n:href="Reference:websites"><span>Websites</span></a>
-            <a id="menu-E" class="menuItem" n:href="Reference:advertising"><span>Advertising</span></a>
+        	<a id="menu-S" class="menuItem" n:href="Reference:identities"><span>Loga</span></a>
+            <a id="menu-H" class="menuItem" n:href="Reference:packaging"><span>Obaly a Dárky</span></a>
+            <a id="menu-A" class="menuItem" n:href="Reference:print-poster"><span>Reklama & Video</span></a>
+            <a id="menu-D" class="menuItem" n:href="Reference:websites"><span>Plakáty & Tiskoviny</span></a>
+            <a id="menu-E" class="menuItem" n:href="Reference:advertising"><span>Weby</span></a>
             <div id="flashContent">
             	{if !isset($section)}
 				<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="802" height="153" id="AnimMenu" align="middle">
@@ -109,7 +108,7 @@
 	</div>
     
     
-	<div id="content">
+	<div id="content" class="text">
     {snippet content}
 
 		{include #content}

@@ -1,11 +1,3 @@
-body {
-	font:11px/1 "Trebuchet MS", "Geneva CE", lucida, sans-serif;
-	color:#333;
-	background-color:#000000;
-	margin:0 auto;
-	padding:0px;
-	overflow:auto;
-}
 
 #topmenu{
 	position:relative;
@@ -269,13 +261,15 @@ a.delete{
 	background: url("images/bgd_content.png") repeat scroll left top transparent;
 	position: relative;
 	margin:20px auto 10px;
-	height:490px;
+	/*height:490px;*/
 	width:800px;
 	z-index:3;
 	padding:25px;
 	text-align:left;
 	color:#FFFFFF;
     font-size:12px;
+	font-family:"museo", "Trebuchet MS", "Geneva CE", lucida, sans-serif !important;
+	line-height: 1.7;
 }
 
 #tmce{
@@ -283,6 +277,7 @@ a.delete{
 	z-index:4;
 	width:850px;
 	margin:0 auto;
+	background: transparent url("images/bgd_content.png") repeat scroll left top;
 }
 #tmce input[type=file]{
 	float:right;
@@ -299,7 +294,9 @@ a.delete{
 	position:relative;
 	width:850px;
 	margin:0 auto;
+	margin-bottom:30px;
 	z-index:5;
+	background: transparent url("images/bgd_content.png") repeat scroll left top;
 }
 #imgList fieldset{
 	float:right;

@@ -27,8 +27,8 @@
 	    	<tbody>
 			<tr n:foreach="$addList as $add">
 				<td>{$add->title}</td>
-				<td class="ico"><a n:if="!$iterator->isFirst()" class="graphic move_up ajax" id="{$add->id}" n:href="MoveUp! $add->id, $add->order" /></td>
-        		<td class="ico"><a n:if="!$iterator->isLast()" class="graphic move_down ajax" id="{$add->id}" n:href="MoveDown! $add->id, $add->order" /></td>
+				<td class="ico"><a n:if="!$iterator->isFirst()" class="graphic move_up ajax" id="{$add->id}" n:href="MoveDown! $add->id, $add->order" /></td>
+        		<td class="ico"><a n:if="!$iterator->isLast()" class="graphic move_down ajax" id="{$add->id}" n:href="MoveUp! $add->id, $add->order" /></td>
 				<td><input class="ajax" type="checkbox" id="{$add->id}" {if $add->display } checked="checked" {/if} /></td>
 	        	<td class="ico"><a class="graphic edit" id="{$add->id}" n:href="Edit $add->id" /></td>
 	    	    <td class="ico"><a class="graphic delete ajax" id="{$add->id}" n:href="Delete! $add->id" /></td>

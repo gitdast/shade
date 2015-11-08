@@ -8,10 +8,10 @@ common:
 	parameters:
 		database:
 			driver: mysql
-			host: localhost
+			host: d175um.forpsi.com
 			dbname: shadecd
-			user: root
-			password: mysqpass11
+			user: shadecd
+			password: AT9WKDKq
 
 
 	php:
@@ -53,3 +53,10 @@ common:
 production < common:
 
 development < common:
+	parameters:
+		database:
+			driver: mysql
+			host: localhost
+			dbname: shadecd
+			user: root
+			password: mysqpass11

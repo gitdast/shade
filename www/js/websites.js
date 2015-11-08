@@ -78,11 +78,14 @@ bindImgEvents = function(){
 		},
 		mouseleave: function(){
 			$(this).removeClass('color').addClass('black');
-		},
+		}
+		/*,
 		click: function(){
 			$.get("?do=ShowDetail&showid="+this.id);
-		}
+		}*/
 	});
+	
+	$('.lightbox').magnificPopup({type:'image', gallery:{ enabled:true }});
 }
 		
 

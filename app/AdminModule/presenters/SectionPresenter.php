@@ -60,7 +60,7 @@ final class SectionPresenter extends BasePresenter{
 	public function contentFormSubmitted(Form $form){
 		$values = $form->getValues();
 
-		$this->context->createSections()->where(array('name' => $this->section))->update(array('sectiontext' => $values['cont']));
+		$this->context->createSections()->where(array('webname' => $this->section))->update(array('sectiontext' => $values['cont']));
 		
 		if($values['image']->isOk()){
 			$filename = $values['image']->getSanitizedName();
@@ -73,7 +73,7 @@ final class SectionPresenter extends BasePresenter{
 	}
 	
 	public function getContent(){
-		$row = $this->context->createSections()->where(array('name' => $this->section));
+		$row = $this->context->createSections()->where(array('webname' => $this->section));
 		return $row->fetch()->sectiontext;
 	}
 	

@@ -10,11 +10,15 @@ $(document).ready(function(){
 		},
 		mouseleave: function(){
 			$(this).removeClass($(this).attr('rel'));
-		},
+		}
+		/*
+		,
 		click: function(e){
 			$.get("?do=ShowDetail&showid="+this.id);
-		}
+		}*/
 	});
+	
+	$('.lightbox').magnificPopup({type:'image', gallery:{ enabled:true }});
 	
 })
 

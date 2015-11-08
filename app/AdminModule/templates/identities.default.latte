@@ -28,8 +28,8 @@
 	    	<tbody>
 			<tr n:foreach="$logosList as $logo">
 				<td>{$logo->title}</td>
-				<td class="ico"><a n:if="!$iterator->isFirst()" class="graphic move_up ajax" id="{$logo->id}" n:href="MoveUp! $logo->id, $logo->order" /></td>
-        		<td class="ico"><a n:if="!$iterator->isLast()" class="graphic move_down ajax" id="{$logo->id}" n:href="MoveDown! $logo->id, $logo->order" /></td>
+				<td class="ico"><a n:if="!$iterator->isFirst()" class="graphic move_up ajax" id="{$logo->id}" n:href="MoveDown! $logo->id, $logo->order" /></td>
+        		<td class="ico"><a n:if="!$iterator->isLast()" class="graphic move_down ajax" id="{$logo->id}" n:href="MoveUp! $logo->id, $logo->order" /></td>
 				<td><input class="ajax" type="checkbox" id="{$logo->id}" {if $logo->display } checked="checked" {/if} /></td>
 				<td><input class="ajax" type="radio" name="mouseview{$logo->id}" value="color" id="{$logo->id}" {if $logo->mouseview == 'color' } checked="checked" {/if} /> normální |
 					<input class="ajax" type="radio" name="mouseview{$logo->id}" value="white" id="{$logo->id}" {if $logo->mouseview == 'white' } checked="checked" {/if} /> inverzní</td>

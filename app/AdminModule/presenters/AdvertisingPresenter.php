@@ -17,14 +17,25 @@ final class AdvertisingPresenter extends BasePresenter{
 	public $refname = "advertising";
 	
 	public function actionDefault(){
-		$this->addList = $this->context->createAdds()->order('order');
+		$this->addList = $this->context->createAdds()->order('order DESC');
+	}
+	
+	public function renderDefault(){
+		$this->template->addList = $this->addList;
+		$this->template->reference = $this->context->createReferences()->select('name')->where('refname', $this->refname)->fetch()->name;
 	}
 	
 	public function actionEdit($editid){
 		$this->editId = $editid;
 		$this->template->editItem = $this->context->createAdds()->get($editid);
 	}
-	
+		
+	public function renderEdit(){
+		$this->template->reference = $this->context->createReferences()->select('name')->where('refname', $this->refname)->fetch()->name;
+		$this->template->path = "/images/".$this->refname."/";
+	}
+
+		
 	public function handleChangeDisplay($addid, $checked){
 		if($this->presenter->isAjax()){
 			$this->context->createAdds()->where(array('id' => $addid))->update(array('display' => $checked));
@@ -41,7 +52,7 @@ final class AdvertisingPresenter extends BasePresenter{
 			$this->context->createAdds()->get($addid)->update(array('order' => $prev_order));
 			$this->context->createAdds()->get($prev_id)->update(array('order' => intval($order)));
 
-			$this->template->addList = $this->context->createAdds()->order('order');
+			$this->template->addList = $this->context->createAdds()->order('order DESC');
 			$this->invalidateControl("advertising");
 			$this->invalidateControl("addList");
 			$this->invalidateControl('flashMessages');
@@ -56,7 +67,7 @@ final class AdvertisingPresenter extends BasePresenter{
 			$this->context->createAdds()->get($addid)->update(array('order' => $next_order));
 			$this->context->createAdds()->get($next_id)->update(array('order' => intval($order)));
 
-			$this->template->addList = $this->context->createAdds()->order('order');
+			$this->template->addList = $this->context->createAdds()->order('order DESC');
 			$this->invalidateControl("advertising");
 			$this->invalidateControl("addList");
 			$this->invalidateControl('flashMessages');
@@ -74,7 +85,7 @@ final class AdvertisingPresenter extends BasePresenter{
 			}
 			$add->delete();
 			$this->flashMessage('Add byl smazán.');
-			$this->template->addList = $this->context->createAdds()->order('panel')->order('order');
+			$this->template->addList = $this->context->createAdds()->order('order DESC');
 			$this->invalidateControl("advertising");
 			$this->invalidateControl("addList");
 		}else{
@@ -86,7 +97,7 @@ final class AdvertisingPresenter extends BasePresenter{
 	public function handleShowDetail($showid){}
 	
 	protected function createComponentAdvertising(){
-		return new \Advertising($this->context->createAdds()->where('display = 1')->order('order'));
+		return new \Advertising($this->context->createAdds()->where('display = 1')->order('order DESC'));
 	}
 	
 	protected function createComponentUploadForm(){
@@ -147,16 +158,6 @@ final class AdvertisingPresenter extends BasePresenter{
 		$form->editId = $this->editId;
 		$form->table = $this->context->createAdds();
 	    return $form;
-	}
-	
-	public function renderEdit(){
-		$this->template->reference = $this->context->createReferences()->select('name')->where('refname', $this->refname)->fetch()->name;
-		$this->template->path = "/images/".$this->refname."/";
-	}
-
-	public function renderDefault(){
-		$this->template->addList = $this->addList;
-		$this->template->reference = $this->context->createReferences()->select('name')->where('refname', $this->refname)->fetch()->name;
 	}
 
 }

@@ -128,7 +128,8 @@ $(document).ready(function(){
 	});
 	
 	//vyjmuto z ajax.js, protoze to v administacni casti nechci
-	$("img.ajax").live("click", function (event){
+	
+	$("body").on("click", "img.ajax", function(event){
 		$("#ajax-spinner").show().css({
 			position: "absolute",
 			//left: event.pageX + 20,

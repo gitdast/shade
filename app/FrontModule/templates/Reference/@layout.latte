@@ -18,10 +18,13 @@
     <link rel="stylesheet" href="{$basePath}/css/references.css" type="text/css">
 	<link rel="shortcut icon" href="{$basePath}/favicon_dast.png" type="image/x-icon">
 
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript" src="{$basePath}/js/scripts.js"></script>
 	<script type="text/javascript" src="{$basePath}/js/shade.js"></script>
 	<script type="text/javascript" src="{$basePath}/js/ajax.js"></script>
+	
+	<link rel="stylesheet" href="{$basePath}/magnific-popup/magnific-popup.css">
+	<script src="{$basePath}/magnific-popup/jquery.magnific-popup.js"></script>
 
 	{block head}{/block}
 </head>
@@ -33,30 +36,30 @@
     <div id="menucont">
 		<div id="topmenu">
 			{foreach $sections as $item}
-				<span><a n:href=":Front:Default:default $item->name">{$item->name}</a></span>
+				<span><a n:href=":Front:Default:default $item->webname">{$item->name}</a></span>
 		    {/foreach}
 		</div>
 	
 		<div id="shademenu">
         	{if $refname != 'identities'}
-            <a id="menu-S" class="menuItem pasive" n:href="Reference:identities"><span>Identities</span></a>
-            {else} <span id="menu-S" class="menuItem"><span>Identities</span></span>
+            <a id="menu-S" class="menuItem pasive" n:href="Reference:identities"><span>Loga</span></a>
+            {else} <span id="menu-S" class="menuItem"><span>Loga</span></span>
             {/if}
             {if $refname != 'packaging'}
-            <a id="menu-H" class="menuItem pasive" n:href="Reference:packaging"><span>Packaging</span></a>
-            {else} <span id="menu-H" class="menuItem"><span>Packaging</span></span>
+            <a id="menu-H" class="menuItem pasive" n:href="Reference:packaging"><span>Obaly a Dárky</span></a>
+            {else} <span id="menu-H" class="menuItem"><span>Obaly a Dárky</span></span>
             {/if}
 			{if $refname != 'printposter'}
-            <a id="menu-A" class="menuItem pasive" n:href="Reference:print-poster"><span>Print & Poster</span></a>
-            {else} <span id="menu-A" class="menuItem"><span>Print & Poster</span></span>
+            <a id="menu-A" class="menuItem pasive" n:href="Reference:print-poster"><span>Reklama & Video</span></a>
+            {else} <span id="menu-A" class="menuItem"><span>Reklama & Video</span></span>
             {/if}
             {if $refname != 'websites'}
-            <a id="menu-D" class="menuItem pasive" n:href="Reference:websites"><span>Websites</span></a>
-            {else} <span id="menu-D" class="menuItem"><span>Websites</span></span>
+            <a id="menu-D" class="menuItem pasive" n:href="Reference:websites"><span>Plakáty & Tiskoviny</span></a>
+            {else} <span id="menu-D" class="menuItem"><span>Plakáty & Tiskoviny</span></span>
             {/if}
             {if $refname != 'advertising'}
-            <a id="menu-E" class="menuItem pasive" n:href="Reference:advertising"><span>Advertising</span></a>
-            {else} <span id="menu-E" class="menuItem"><span>Advertising</span></span>
+            <a id="menu-E" class="menuItem pasive" n:href="Reference:advertising"><span>Weby</span></a>
+            {else} <span id="menu-E" class="menuItem"><span>Weby</span></span>
             {/if}
             <div id="flashContent">
 				<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="802" height="153" id="AnimMenu" align="middle">
@@ -103,27 +106,6 @@
     	{include #content}
 	{/block}
 
-
-	{snippet detailBox}
-	{ifset $detailBox}
-	
-	<div id="detailBox">
-		<div id="img_cont">
-			<a id="close">zavřít</a>
-			<img src="{$detailBox->path}{$detailBox->detail}" alt="{$detailBox->title}" title="{$detailBox->title}" />
-			<div id="title"><span>{$references}:</span>{$detailBox->title}</div>
-		</div>
-	</div>
-	
-	<script>
-		$("#detailBox #img_cont img").load(function(){
-			detailBoxInit();
-			detailBoxBindEvents();
-		})
-	</script>
-	
-	{/ifset}
-	{/snippet}
 
 </body>
 </html>

@@ -17,7 +17,12 @@ final class PrintPosterPresenter extends BasePresenter{
 	public $refname = "printposter";
 	
 	public function actionDefault(){
-		$this->itemsList = $this->context->createPrints()->order('order');
+		$this->itemsList = $this->context->createPrints()->order('order DESC');
+	}
+	
+	public function renderDefault(){
+		$this->template->itemsList = $this->itemsList;
+		$this->template->reference = $this->context->createReferences()->select('name')->where('refname', $this->refname)->fetch()->name;
 	}
 	
 	public function actionEdit($editid){
@@ -25,6 +30,11 @@ final class PrintPosterPresenter extends BasePresenter{
 		$this->template->editItem = $this->context->createPrints()->get($editid);
 	}
 	
+	public function renderEdit(){
+		$this->template->reference = $this->context->createReferences()->select('name')->where('refname', $this->refname)->fetch()->name;
+		$this->template->path = "/images/".$this->refname."/";
+	}
+
 	public function handleChangeDisplay($itemid, $checked){
 		if($this->presenter->isAjax()){
 			$this->context->createPrints()->where(array('id' => $itemid))->update(array('display' => $checked));
@@ -41,7 +51,7 @@ final class PrintPosterPresenter extends BasePresenter{
 			$this->context->createPrints()->get($itemid)->update(array('order' => $prev_order));
 			$this->context->createPrints()->get($prev_id)->update(array('order' => intval($order)));
 
-			$this->template->itemsList = $this->context->createPrints()->order('order');
+			$this->template->itemsList = $this->context->createPrints()->order('order DESC');
 			$this->invalidateControl("printPoster");
 			$this->invalidateControl("itemsList");
 			$this->invalidateControl('flashMessages');
@@ -56,7 +66,7 @@ final class PrintPosterPresenter extends BasePresenter{
 			$this->context->createPrints()->get($itemid)->update(array('order' => $next_order));
 			$this->context->createPrints()->get($next_id)->update(array('order' => intval($order)));
 
-			$this->template->itemsList = $this->context->createPrints()->order('order');
+			$this->template->itemsList = $this->context->createPrints()->order('order DESC');
 			$this->invalidateControl("printPoster");
 			$this->invalidateControl("itemsList");
 			$this->invalidateControl('flashMessages');
@@ -74,7 +84,7 @@ final class PrintPosterPresenter extends BasePresenter{
 			}
 			$web->delete();
 			$this->flashMessage('P&p byl smazán.');
-			$this->template->itemsList = $this->context->createPrints()->order('panel')->order('order');
+			$this->template->itemsList = $this->context->createPrints()->order('order DESC');
 			$this->invalidateControl("printPoster");
 			$this->invalidateControl("itemsList");
 		}else{
@@ -86,7 +96,7 @@ final class PrintPosterPresenter extends BasePresenter{
 	public function handleShowDetail($showid){}
 	
 	protected function createComponentPrintPoster(){
-		return new \PrintPoster($this->context->createPrints()->where('display = 1')->order('order'));
+		return new \PrintPoster($this->context->createPrints()->where('display = 1')->order('order DESC'));
 	}
 	
 	protected function createComponentUploadForm(){
@@ -149,16 +159,6 @@ final class PrintPosterPresenter extends BasePresenter{
 	    return $form;
 	}
 	
-	public function renderEdit(){
-		$this->template->reference = $this->context->createReferences()->select('name')->where('refname', $this->refname)->fetch()->name;
-		$this->template->path = "/images/".$this->refname."/";
-	}
-
-	public function renderDefault(){
-		$this->template->itemsList = $this->itemsList;
-		$this->template->reference = $this->context->createReferences()->select('name')->where('refname', $this->refname)->fetch()->name;
-	}
-
 }
 
 ?>

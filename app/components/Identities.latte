@@ -2,5 +2,9 @@
 <script type="text/javascript" src="{$basePath}/js/identities.js"></script>
 
 <div id="refContent" class="identities">
-	<div class="logocont" n:foreach="$logos as $logo"><img id="{$logo->id}" class="ajax {$iterator->isOdd() ? grey : black}" rel="{$logo->mouseview}" src="{$basePath}/images/identities/{$logo->file}" alt="{$logo->title}" title="{$logo->title}" /></div>
+	<div class="logocont" n:foreach="$logos as $logo">
+		<a class="lightbox" href="{$basePath}/images/identities/{$logo->detail}" title="{$logo->title}">
+			<img id="{$logo->id}" class="{$iterator->isOdd() ? grey : black}" rel="{$logo->mouseview}" src="{$basePath}/images/identities/{$logo->file}" alt="{$logo->title}" title="{$logo->title}" />
+		</a>
+	</div>
 </div>

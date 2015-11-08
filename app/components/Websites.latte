@@ -2,11 +2,27 @@
 <script type="text/javascript" src="{$basePath}/js/websites.js"></script>
 
 <div id="refContent" class="websites">
+	
 	<div id="panel1" class="panel">
-		<div class="itemcont" n:foreach="$panel1 as $item"><img id="{$item->id}" class="ajax" src="{$basePath}/images/websites/{$item->file}" alt="{$item->title}" title="{$item->title}" /></div>
+		{foreach $items as $item}
+			<div class="itemcont">
+				<a class="lightbox" href="{$basePath}/images/websites/{$item->detail}" title="{$item->title}">
+					<img id="{$item->id}" class="" src="{$basePath}/images/websites/{$item->file}" alt="{$item->title}" title="{$item->title}" />
+				</a>
+			</div>
+			{breakIf $iterator->counter == ceil(count($items) / 2)}
+		{/foreach}
+		
 	</div>
 	<div></div>
 	<div id="panel2" class="panel">
-		<div class="itemcont" n:foreach="$panel2 as $item"><img id="{$item->id}" class="ajax" src="{$basePath}/images/websites/{$item->file}" alt="{$item->title}" title="{$item->title}" /></div>
+		{foreach $items as $item}
+			{continueIf $iterator->counter <= ceil(count($items) / 2)}
+			<div class="itemcont">
+				<a class="lightbox" href="{$basePath}/images/websites/{$item->detail}" title="{$item->title}">
+					<img id="{$item->id}" class="" src="{$basePath}/images/websites/{$item->file}" alt="{$item->title}" title="{$item->title}" />
+				</a>
+			</div>
+		{/foreach}
 	</div>
 </div>
