@@ -56,27 +56,15 @@ jQuery.ajaxSetup({
 	dataType: "json"
 });
 
-
-$("body").on("click", "a.ajax", function(event){
-    event.preventDefault();
-    $.get(this.href);
+$(document).ready(function(){
+	$("body").on("click", "a.ajax", function(event){
+		event.preventDefault();
+	    $.get(this.href);
 	
-    $("#ajax-spinner").show().css({
-        position: "absolute",
-        //left: event.pageX + 20,
-        //top: event.pageY + 40
-		left: "50%",
-        top: "50%"
-    });
-});
+		$("#ajax-spinner").show();
+	});
 
-$("body").on("click", "input.ajax", function(event){
-    $("#ajax-spinner").show().css({
-        position: "absolute",
-        //left: event.pageX + 20,
-        //top: event.pageY + 40
-		left: "50%",
-        top: "50%"
-    });
+	$("body").on("click", "input.ajax", function(event){
+		$("#ajax-spinner").show();
+	});
 });
-

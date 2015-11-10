@@ -37,44 +37,36 @@ final class AdvertisingPresenter extends BasePresenter{
 
 		
 	public function handleChangeDisplay($addid, $checked){
-		if($this->presenter->isAjax()){
-			$this->context->createAdds()->where(array('id' => $addid))->update(array('display' => $checked));
-			$this->invalidateControl("advertising");
-			$this->invalidateControl('flashMessages');
-		}
+		$this->context->createAdds()->where(array('id' => $addid))->update(array('display' => $checked));
+		$this->invalidateControl("advertising");
+		$this->invalidateControl('flashMessages');
 	}
 	
 	public function handleMoveUp($addid, $order){
-		if($this->presenter->isAjax()){
-			$prev_order = $this->context->createAdds()->where('order < ?', intval($order))->max('order');
-			$prev_row = $this->context->createAdds()->where('order',$prev_order)->fetch();
-			$prev_id = $prev_row["id"];
-			$this->context->createAdds()->get($addid)->update(array('order' => $prev_order));
-			$this->context->createAdds()->get($prev_id)->update(array('order' => intval($order)));
+		$prev_order = $this->context->createAdds()->where('order < ?', intval($order))->max('order');
+		$prev_row = $this->context->createAdds()->where('order',$prev_order)->fetch();
+		$prev_id = $prev_row["id"];
+		$this->context->createAdds()->get($addid)->update(array('order' => $prev_order));
+		$this->context->createAdds()->get($prev_id)->update(array('order' => intval($order)));
 
-			$this->template->addList = $this->context->createAdds()->order('order DESC');
-			$this->invalidateControl("advertising");
-			$this->invalidateControl("addList");
-			$this->invalidateControl('flashMessages');
-		}
+		$this->template->addList = $this->context->createAdds()->order('order DESC');
+		$this->invalidateControl("advertising");
+		$this->invalidateControl("addList");
+		$this->invalidateControl('flashMessages');
 	}
 	
 	public function handleMoveDown($addid, $order){
-		if($this->presenter->isAjax()){
-			$next_order = $this->context->createAdds()->where('order > ?', intval($order))->min('order');
-			$next_row = $this->context->createAdds()->where('order',$next_order)->fetch();
-			$next_id = $next_row["id"];
-			$this->context->createAdds()->get($addid)->update(array('order' => $next_order));
-			$this->context->createAdds()->get($next_id)->update(array('order' => intval($order)));
+		$next_order = $this->context->createAdds()->where('order > ?', intval($order))->min('order');
+		$next_row = $this->context->createAdds()->where('order',$next_order)->fetch();
+		$next_id = $next_row["id"];
+		$this->context->createAdds()->get($addid)->update(array('order' => $next_order));
+		$this->context->createAdds()->get($next_id)->update(array('order' => intval($order)));
 
-			$this->template->addList = $this->context->createAdds()->order('order DESC');
-			$this->invalidateControl("advertising");
-			$this->invalidateControl("addList");
-			$this->invalidateControl('flashMessages');
-		}
+		$this->template->addList = $this->context->createAdds()->order('order DESC');
+		$this->invalidateControl("advertising");
+		$this->invalidateControl("addList");
+		$this->invalidateControl('flashMessages');
 	}
-	
-	public function handleEdit($addid){}
 	
 	public function handleDelete($addid){
 		$add = $this->context->createAdds()->find($addid)->fetch();
@@ -94,8 +86,7 @@ final class AdvertisingPresenter extends BasePresenter{
 		$this->invalidateControl('flashMessages');
 	}
 	
-	public function handleShowDetail($showid){}
-	
+
 	protected function createComponentAdvertising(){
 		return new \Advertising($this->context->createAdds()->where('display = 1')->order('order DESC'));
 	}

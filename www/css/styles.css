@@ -36,7 +36,7 @@
 
 body{
 	font:11px/1.3 "museo", "Trebuchet MS", "Geneva CE", lucida, sans-serif;
-	color:#333;
+	color:#777;
 	background-color:#000000;
 	margin:0 auto;
 	padding:0px;
@@ -52,45 +52,6 @@ h1{
 }
 h2,h3,h4{
 	color:#B1C800;
-}
-
-#detailBox{
-	background-color:rgba(51,51,51,0.85);
-	position:absolute;
-	top:0px;
-	left:0px;
-	z-index:2000;
-	opacity:0; /* zde kvuli iniciaci detailBoxu, kde se nastavuji rozmery, tak v tu chvili je alpha(opacity) nula */	
-}
-#detailBox #img_cont{
-	position:relative;
-	text-align:left;
-	float:left;
-}
-#detailBox #img_cont a#close{
-	position:relative;
-	display:block;
-	float:right;
-	margin-bottom:5px;
-	color:#CCC;
-	cursor:pointer;
-	text-decoration:none;
-}
-#detailBox #img_cont a#close:hover{
-	color:#999;
-	text-decoration:underline;
-}
-#detailBox #img_cont img{
-	display:block;
-}
-#detailBox #img_cont #title{
-	margin-top:5px;
-	color:white;
-	font-size:12px;
-}
-#detailBox #img_cont #title span{
-	color:#999;
-	margin-right:5px;
 }
 
 .transparent{
@@ -113,12 +74,14 @@ h2,h3,h4{
 }
 
 #ajax-spinner {
-	margin: 15px 0 0 15px;
-	padding: 13px;
-	background: white url('../images/spinner.gif') no-repeat 50% 50%;
+	padding: 60px;
+	background: rgba(255,255,255,0.8) url('../images/spinner.gif') no-repeat 50% 50%;
 	font-size: 0;
 	z-index: 123456;
 	display: none;
+	position:fixed;
+	left:50%;
+	top:50%;
 }
 
 div.flash {

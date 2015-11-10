@@ -18,5 +18,15 @@ $(document).ready(function(){
 	});
 	
 	$('.lightbox').magnificPopup({type:'image', gallery:{ enabled:true }});
+	$('.youtubeLink').magnificPopup({
+		disableOn: 700,
+		type: 'iframe',
+		mainClass: 'mfp-fade',
+		removalDelay: 160,
+		preloader: false,
+
+		fixedContentPos: false
+		/*iframe: {patterns: {youtube: {id: 'be/'}}}*/
+	});
 })
 

@@ -10,7 +10,7 @@
 
 	<link rel="stylesheet" href="{$basePath}/css/styles.css" type="text/css">
     <link rel="stylesheet" href="{$basePath}/css/admin.css" type="text/css">
-	<link rel="shortcut icon" href="{$basePath}/favicon_dast.png" type="image/x-icon">
+	<link rel="shortcut icon" href="{$basePath}/favicon.jpg" type="image/x-icon">
 	
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
 	<script type="text/javascript" src="{$basePath}/js/scripts.js"></script>
@@ -30,19 +30,19 @@
     	<span><a n:href="Default:default">Administrace</a></span>
         <span id="reference">
         	<span>Reference:</span>
-			<a n:href="Identities:default"><span>Identities</span></a>
-			<a n:href="Packaging:default"><span>Packaging</span></a>
-			<a n:href="PrintPoster:default"><span>Print & Poster</span></a>
-			<a n:href="Websites:default"><span>Websites</span></a>
-			<a n:href="Advertising:default"><span>Advertising</span></a>
+			<a n:href="Identities:default"><span>Loga</span></a>
+			<a n:href="Packaging:default"><span>Obaly</span></a>
+			<a n:href="PrintPoster:default"><span>Reklama & Video</span></a>
+			<a n:href="Websites:default"><span>Plakáty</span></a>
+			<a n:href="Advertising:default"><span>Weby</span></a>
 		</span>
         <span id="sections">
         	<span>Sekce:</span>
-	        <a n:href="Section:about">About</a>
-    	    <a n:href="Section:services">Services</a>
-        	<a n:href="Section:news">News</a>
-	        <a n:href="Section:clients">Clients</a>
-    	    <a n:href="Section:contacts">Contacts</a>
+	        <a n:href="Section:about">O nás</a>
+    	    <a n:href="Section:services">Služby</a>
+        	<a n:href="Section:news">Aktuality</a>
+	        <a n:href="Section:clients">Klienti</a>
+    	    <a n:href="Section:contacts">Kontakty</a>
 		</span>
 		<a id="linktopage" n:href=":Front:Default:default">přejít na homepage&gt;&gt;</a>
 		<a id="linksignout" n:href="SignOut!">odhlásit</a>
@@ -54,8 +54,10 @@
 	
 	<div id="tmce">
 		{form contentForm}
-			{input cont}			
-			{input save}{input image}{label image /}
+			{input cont}
+			<div class="buttons">
+				{input save}{input image}{label image /}
+			</div>
 		{/form}
 	</div>
 	<div id="imgList">

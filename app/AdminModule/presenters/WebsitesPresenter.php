@@ -37,44 +37,36 @@ final class WebsitesPresenter extends BasePresenter{
 
 	
 	public function handleChangeDisplay($itemid, $checked){
-		if($this->presenter->isAjax()){
-			$this->context->createWebs()->where(array('id' => $itemid))->update(array('display' => $checked));
-			$this->invalidateControl("websites");
-			$this->invalidateControl('flashMessages');
-		}
+		$this->context->createWebs()->where(array('id' => $itemid))->update(array('display' => $checked));
+		$this->invalidateControl("websites");
+		$this->invalidateControl('flashMessages');
 	}
 	
 	public function handleMoveUp($itemid, $order){
-		if($this->presenter->isAjax()){
-			$prev_order = $this->context->createWebs()->where('order < ?', intval($order))->max('order');
-			$prev_row = $this->context->createWebs()->where('order', $prev_order)->fetch();
-			$prev_id = $prev_row["id"];
-			$this->context->createWebs()->get($itemid)->update(array('order' => $prev_order));
-			$this->context->createWebs()->get($prev_id)->update(array('order' => intval($order)));
+		$prev_order = $this->context->createWebs()->where('order < ?', intval($order))->max('order');
+		$prev_row = $this->context->createWebs()->where('order', $prev_order)->fetch();
+		$prev_id = $prev_row["id"];
+		$this->context->createWebs()->get($itemid)->update(array('order' => $prev_order));
+		$this->context->createWebs()->get($prev_id)->update(array('order' => intval($order)));
 
-			$this->template->itemsList = $this->context->createWebs()->order('order DESC');
-			$this->invalidateControl("websites");
-			$this->invalidateControl("itemsList");
-			$this->invalidateControl('flashMessages');
-		}
+		$this->template->itemsList = $this->context->createWebs()->order('order DESC');
+		$this->invalidateControl("websites");
+		$this->invalidateControl("itemsList");
+		$this->invalidateControl('flashMessages');
 	}
 	
 	public function handleMoveDown($itemid, $order, $panel){
-		if($this->presenter->isAjax()){
-			$next_order = $this->context->createWebs()->where('order > ?', intval($order))->min('order');
-			$next_row = $this->context->createWebs()->where('order', $next_order)->fetch();
-			$next_id = $next_row["id"];
-			$this->context->createWebs()->get($itemid)->update(array('order' => $next_order));
-			$this->context->createWebs()->get($next_id)->update(array('order' => intval($order)));
+		$next_order = $this->context->createWebs()->where('order > ?', intval($order))->min('order');
+		$next_row = $this->context->createWebs()->where('order', $next_order)->fetch();
+		$next_id = $next_row["id"];
+		$this->context->createWebs()->get($itemid)->update(array('order' => $next_order));
+		$this->context->createWebs()->get($next_id)->update(array('order' => intval($order)));
 
-			$this->template->itemsList = $this->context->createWebs()->order('order DESC');
-			$this->invalidateControl("websites");
-			$this->invalidateControl("itemsList");
-			$this->invalidateControl('flashMessages');
-		}
+		$this->template->itemsList = $this->context->createWebs()->order('order DESC');
+		$this->invalidateControl("websites");
+		$this->invalidateControl("itemsList");
+		$this->invalidateControl('flashMessages');
 	}
-	
-	public function handleEdit($itemid){}
 	
 	public function handleDelete($itemid){
 		$pp = $this->context->createWebs()->find($itemid)->fetch();
@@ -94,8 +86,7 @@ final class WebsitesPresenter extends BasePresenter{
 		$this->invalidateControl('flashMessages');
 	}
 	
-	public function handleShowDetail($showid){}
-	
+
 	protected function createComponentWebsites(){
 		$res = $this->context->createWebs()->where('display = 1')->order('order DESC');
 		return new \Websites($res);

@@ -8,10 +8,14 @@ class EditForm extends UI\Form{
 	private $presenter;
 	public $editId;
 	public $table;
+	
+	private $page;
 
-	public function __construct(IContainer $parent = NULL, $name = NULL){
+	public function __construct(IContainer $parent = NULL, $page = NULL){
 		parent::__construct();
 		$this->presenter = $parent;
+		$this->page = $page;
+		
 		$this->addUpload('image', 'Obrázek (vybrat nový soubor)')
 			->setAttribute('size',30)
 			->addCondition($this::FILLED)
@@ -24,7 +28,11 @@ class EditForm extends UI\Form{
 			->addRule($this::IMAGE, 'Soubor musí být JPEG, PNG nebo GIF.')
 			->addRule($this::MAX_FILE_SIZE, 'Maximální velikost souboru je 5 MB.', '5000000');
 
-		$this->addText('title', 'Název', 35);
+		$this->addText('title', 'Název', 40);
+		
+		if($this->page == "printPoster"){
+			$this->addText('link', 'Odkaz(youtube): ', 40);
+		}
 
 		$this->addSubmit('create', 'Uložit');
 		$this->onSuccess[] = callback($this, 'editFormSubmitted');
@@ -43,6 +51,9 @@ class EditForm extends UI\Form{
 		}
 		if($values['title'] != ''){
 			$update['title'] = $values['title'];
+		}
+		if($this->page == "printPoster"){
+			$update['link'] = $values['link'];
 		}
 		
 		if(count($update) > 0){

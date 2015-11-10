@@ -53,37 +53,30 @@ final class IdentitiesPresenter extends BasePresenter{
 	}
 	
 	public function handleMoveUp($logoid, $order){
-		if($this->presenter->isAjax()){
-			$prev_order = $this->context->createLogos()->where('order < ?', intval($order))->max('order');
-			$prev_row = $this->context->createLogos()->where('order', $prev_order)->fetch();
-			$prev_id = $prev_row["id"];
-			$this->context->createLogos()->get($logoid)->update(array('order' => $prev_order));
-			$this->context->createLogos()->get($prev_id)->update(array('order' => intval($order)));
+		$prev_order = $this->context->createLogos()->where('order < ?', intval($order))->max('order');
+		$prev_row = $this->context->createLogos()->where('order', $prev_order)->fetch();
+		$prev_id = $prev_row["id"];
+		$this->context->createLogos()->get($logoid)->update(array('order' => $prev_order));
+		$this->context->createLogos()->get($prev_id)->update(array('order' => intval($order)));
 
-			$this->template->logosList = $this->context->createLogos()->order('order DESC');
-			$this->invalidateControl("identities");
-			$this->invalidateControl("logosList");
-			$this->invalidateControl('flashMessages');
-		}
+		$this->template->logosList = $this->context->createLogos()->order('order DESC');
+		$this->invalidateControl("identities");
+		$this->invalidateControl("logosList");
+		$this->invalidateControl('flashMessages');
 	}
 	
 	public function handleMoveDown($logoid, $order){
-		if($this->presenter->isAjax()){
-			$next_order = $this->context->createLogos()->where('order > ?', intval($order))->min('order');
-			$next_row = $this->context->createLogos()->where('order',$next_order)->fetch();
-			$next_id = $next_row["id"];
-			$this->context->createLogos()->get($logoid)->update(array('order' => $next_order));
-			$this->context->createLogos()->get($next_id)->update(array('order' => intval($order)));
+		$next_order = $this->context->createLogos()->where('order > ?', intval($order))->min('order');
+		$next_row = $this->context->createLogos()->where('order',$next_order)->fetch();
+		$next_id = $next_row["id"];
+		$this->context->createLogos()->get($logoid)->update(array('order' => $next_order));
+		$this->context->createLogos()->get($next_id)->update(array('order' => intval($order)));
 
-			$this->template->logosList = $this->context->createLogos()->order('order DESC');
-			$this->invalidateControl("identities");
-			$this->invalidateControl("logosList");
-			$this->invalidateControl('flashMessages');
-		}
+		$this->template->logosList = $this->context->createLogos()->order('order DESC');
+		$this->invalidateControl("identities");
+		$this->invalidateControl("logosList");
+		$this->invalidateControl('flashMessages');
 	}
-	
-	public function handleEdit($logoid){}
-	
 	
 	public function handleDelete($logoid){
 		$logo = $this->context->createLogos()->find($logoid)->fetch();
@@ -103,7 +96,7 @@ final class IdentitiesPresenter extends BasePresenter{
 		$this->invalidateControl('flashMessages');
 	}
 	
-	public function handleShowDetail($showid){}
+
 	
 	protected function createComponentIdentities(){
 		return new \Identities($this->context->createLogos()->where('display = 1')->order('order DESC'));

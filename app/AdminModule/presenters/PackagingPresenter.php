@@ -36,44 +36,36 @@ final class PackagingPresenter extends BasePresenter{
 	}
 	
 	public function handleChangeDisplay($packid, $checked){
-		if($this->presenter->isAjax()){
-			$this->context->createPacks()->where(array('id' => $packid))->update(array('display' => $checked));
-			$this->invalidateControl("packaging");
-			$this->invalidateControl('flashMessages');
-		}
+		$this->context->createPacks()->where(array('id' => $packid))->update(array('display' => $checked));
+		$this->invalidateControl("packaging");
+		$this->invalidateControl('flashMessages');
 	}
 	
 	public function handleMoveUp($packid, $order){
-		if($this->presenter->isAjax()){
-			$prev_order = $this->context->createPacks()->where('order < ?', intval($order))->max('order');
-			$prev_row = $this->context->createPacks()->where('order',$prev_order)->fetch();
-			$prev_id = $prev_row["id"];
-			$this->context->createPacks()->get($packid)->update(array('order' => $prev_order));
-			$this->context->createPacks()->get($prev_id)->update(array('order' => intval($order)));
+		$prev_order = $this->context->createPacks()->where('order < ?', intval($order))->max('order');
+		$prev_row = $this->context->createPacks()->where('order',$prev_order)->fetch();
+		$prev_id = $prev_row["id"];
+		$this->context->createPacks()->get($packid)->update(array('order' => $prev_order));
+		$this->context->createPacks()->get($prev_id)->update(array('order' => intval($order)));
 
-			$this->template->packList = $this->context->createPacks()->order('order DESC');
-			$this->invalidateControl("packaging");
-			$this->invalidateControl("packList");
-			$this->invalidateControl('flashMessages');
-		}
+		$this->template->packList = $this->context->createPacks()->order('order DESC');
+		$this->invalidateControl("packaging");
+		$this->invalidateControl("packList");
+		$this->invalidateControl('flashMessages');
 	}
 	
 	public function handleMoveDown($packid, $order){
-		if($this->presenter->isAjax()){
-			$next_order = $this->context->createPacks()->where('order > ?', intval($order))->min('order');
-			$next_row = $this->context->createPacks()->where('order',$next_order)->fetch();
-			$next_id = $next_row["id"];
-			$this->context->createPacks()->get($packid)->update(array('order' => $next_order));
-			$this->context->createPacks()->get($next_id)->update(array('order' => intval($order)));
+		$next_order = $this->context->createPacks()->where('order > ?', intval($order))->min('order');
+		$next_row = $this->context->createPacks()->where('order',$next_order)->fetch();
+		$next_id = $next_row["id"];
+		$this->context->createPacks()->get($packid)->update(array('order' => $next_order));
+		$this->context->createPacks()->get($next_id)->update(array('order' => intval($order)));
 
-			$this->template->packList = $this->context->createPacks()->order('order DESC');
-			$this->invalidateControl("packaging");
-			$this->invalidateControl("packList");
-			$this->invalidateControl('flashMessages');
-		}
+		$this->template->packList = $this->context->createPacks()->order('order DESC');
+		$this->invalidateControl("packaging");
+		$this->invalidateControl("packList");
+		$this->invalidateControl('flashMessages');
 	}
-	
-	public function handleEdit($packid){}
 	
 	public function handleDelete($packid){
 		$pp = $this->context->createPacks()->find($packid)->fetch();
@@ -93,7 +85,6 @@ final class PackagingPresenter extends BasePresenter{
 		$this->invalidateControl('flashMessages');
 	}
 	
-	public function handleShowDetail($showid){}
 	
 	protected function createComponentPackaging(){
 		return new \Packaging($this->context->createPacks()->where('display = 1')->order('order DESC'));

@@ -3,7 +3,13 @@
 
 <div id="refContent" class="printPoster">
 	<div class="itemcont" n:foreach="$items as $item">
-		<a class="lightbox" href="{$basePath}/images/printposter/{$item->detail}" title="{$item->title}">
+		<a
+			{if !empty($item->link)}
+				class="youtubeLink" href="{$item->link}"
+			{else}
+				class="lightbox" href="{$basePath}/images/printposter/{$item->detail}"
+			{/if}
+			title="{$item->title}">
 			<img id="{$item->id}" class="" src="{$basePath}/images/printposter/{$item->file}" alt="{$item->title}" title="{$item->title}" />
 		</a>
 	</div>

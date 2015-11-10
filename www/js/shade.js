@@ -128,15 +128,8 @@ $(document).ready(function(){
 	});
 	
 	//vyjmuto z ajax.js, protoze to v administacni casti nechci
-	
 	$("body").on("click", "img.ajax", function(event){
-		$("#ajax-spinner").show().css({
-			position: "absolute",
-			//left: event.pageX + 20,
-			//top: event.pageY + 40
-			left: "50%",
-			top: "50%"
-		});
+		$("#ajax-spinner").show();
 	});
 })
 

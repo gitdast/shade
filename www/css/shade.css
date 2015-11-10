@@ -195,13 +195,15 @@
 	margin:0px auto;
 	padding:25px;
 	z-index:1001;
-	background:url(images/bgd_content.png) top left repeat;
+	/*background:url(images/bgd_content.png) top left repeat;*/
+	background-color:black;
+	background-color:rgba(0,0,0,0.75);
 	text-align:left;
-	font-size:12px;
+	font-size:13px;
 	color:#FFF;
 }
 
 #content.text{
 	font-family:"museo", "Trebuchet MS", "Geneva CE", lucida, sans-serif !important;
-	line-height: 1.7;
+	line-height: 1.8;
 }

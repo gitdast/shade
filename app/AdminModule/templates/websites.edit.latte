@@ -31,7 +31,7 @@
 					<td>{input detail}</td>
 				</tr>
 				<tr>
-					<td class="title">{$editItem->title}</td>
+					<td class="title">{*$editItem->title*}</td>
 					<td><img id="{$editItem->id}" src="{$basePath}{$path}{$editItem->file}" alt="{$editItem->title}" title="{$editItem->title}" /></td>
 					<td><img src="{$basePath}{$path}{$editItem->detail ? $editItem->detail : 'detail_missing.png'}" alt="not inserted" title="{$editItem->title}" /></td>
 				</tr>

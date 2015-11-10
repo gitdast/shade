@@ -36,45 +36,38 @@ final class PrintPosterPresenter extends BasePresenter{
 	}
 
 	public function handleChangeDisplay($itemid, $checked){
-		if($this->presenter->isAjax()){
-			$this->context->createPrints()->where(array('id' => $itemid))->update(array('display' => $checked));
-			$this->invalidateControl("printPoster");
-			$this->invalidateControl('flashMessages');
-		}
+		$this->context->createPrints()->where(array('id' => $itemid))->update(array('display' => $checked));
+		$this->invalidateControl("printPoster");
+		$this->invalidateControl('flashMessages');
 	}
 	
 	public function handleMoveUp($itemid, $order){
-		if($this->presenter->isAjax()){
-			$prev_order = $this->context->createPrints()->where('order < ?', intval($order))->max('order');
-			$prev_row = $this->context->createPrints()->where('order',$prev_order)->fetch();
-			$prev_id = $prev_row["id"];
-			$this->context->createPrints()->get($itemid)->update(array('order' => $prev_order));
-			$this->context->createPrints()->get($prev_id)->update(array('order' => intval($order)));
+		$prev_order = $this->context->createPrints()->where('order < ?', intval($order))->max('order');
+		$prev_row = $this->context->createPrints()->where('order',$prev_order)->fetch();
+		$prev_id = $prev_row["id"];
+		$this->context->createPrints()->get($itemid)->update(array('order' => $prev_order));
+		$this->context->createPrints()->get($prev_id)->update(array('order' => intval($order)));
 
-			$this->template->itemsList = $this->context->createPrints()->order('order DESC');
-			$this->invalidateControl("printPoster");
-			$this->invalidateControl("itemsList");
-			$this->invalidateControl('flashMessages');
-		}
+		$this->template->itemsList = $this->context->createPrints()->order('order DESC');
+		$this->invalidateControl("printPoster");
+		$this->invalidateControl("itemsList");
+		$this->invalidateControl('flashMessages');
 	}
 	
 	public function handleMoveDown($itemid, $order){
-		if($this->presenter->isAjax()){
-			$next_order = $this->context->createPrints()->where('order > ?', intval($order))->min('order');
-			$next_row = $this->context->createPrints()->where('order',$next_order)->fetch();
-			$next_id = $next_row["id"];
-			$this->context->createPrints()->get($itemid)->update(array('order' => $next_order));
-			$this->context->createPrints()->get($next_id)->update(array('order' => intval($order)));
+		$next_order = $this->context->createPrints()->where('order > ?', intval($order))->min('order');
+		$next_row = $this->context->createPrints()->where('order',$next_order)->fetch();
+		$next_id = $next_row["id"];
+		$this->context->createPrints()->get($itemid)->update(array('order' => $next_order));
+		$this->context->createPrints()->get($next_id)->update(array('order' => intval($order)));
 
-			$this->template->itemsList = $this->context->createPrints()->order('order DESC');
-			$this->invalidateControl("printPoster");
-			$this->invalidateControl("itemsList");
-			$this->invalidateControl('flashMessages');
-		}
+		$this->template->itemsList = $this->context->createPrints()->order('order DESC');
+		$this->invalidateControl("printPoster");
+		$this->invalidateControl("itemsList");
+		$this->invalidateControl('flashMessages');
 	}
 	
-	public function handleEdit($itemid){}
-	
+
 	public function handleDelete($itemid){
 		$web = $this->context->createPrints()->get($itemid);
 		if($web){
@@ -93,8 +86,7 @@ final class PrintPosterPresenter extends BasePresenter{
 		$this->invalidateControl('flashMessages');
 	}
 	
-	public function handleShowDetail($showid){}
-	
+
 	protected function createComponentPrintPoster(){
 		return new \PrintPoster($this->context->createPrints()->where('display = 1')->order('order DESC'));
 	}
@@ -111,8 +103,10 @@ final class PrintPosterPresenter extends BasePresenter{
 			->addRule($form::IMAGE, 'Soubor musí být JPEG, PNG nebo GIF.')
 			->addRule($form::MAX_FILE_SIZE, 'Maximální velikost souboru je 5 MB.', '5000000');
 			
-		$form->addText('title', 'Název: ', 35)
+		$form->addText('title', 'Název: ', 40)
 			->addRule($form::FILLED, 'Ještě nějaký ten title, please...');
+		
+		$form->addText('link', 'Odkaz(youtube): ', 40);
 
 		$form->addSubmit('create', 'Nahrát');
 		$form->onSuccess[] = callback($this, 'uploadFormSubmitted');
@@ -152,7 +146,7 @@ final class PrintPosterPresenter extends BasePresenter{
     }
 	
 	protected function createComponentEditForm($name){
-	    $form = new \EditForm($this);
+	    $form = new \EditForm($this, "printPoster");
     	$form->folder = $this->folder;
 		$form->editId = $this->editId;
 		$form->table = $this->context->createPrints();
