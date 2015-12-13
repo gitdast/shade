@@ -5,8 +5,8 @@ use Nette\Database\Connection,
 	
 class Sections extends Selection
 {
-    public function __construct(Connection $connection)
-    {
+    public function __construct(Connection $connection){
         parent::__construct('sections', $connection);
+		//$this->where[] = "visible = 1";
     }
 }

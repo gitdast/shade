@@ -8,10 +8,13 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta name="description" content="Nette Framework web application skeleton">
-	<meta name="robots" content="{$robots}" n:ifset="$robots">
+	<meta name="description" content="{isset($description) ? $description : 'Studio SHADE, brandbuilding and design'}">
+	<meta name="author" content="Dast, dast@seznam.cz">
+	<meta name="copyright" content="Copyright @ 2015 - All rights reserved.">
+	<meta name="resource-type" content="document">
+	<meta name="robots" content="index, follow">
 
-	<title n:snippet=title>{ifset $title}{$title}{/ifset}</title>
+	<title n:snippet=title>{isset($title) ? $title : "Studio SHADE"}</title>
 
 	<link rel="stylesheet" href="{$basePath}/css/styles.css" type="text/css">
 	<link rel="stylesheet" href="{$basePath}/css/shade.css" type="text/css">

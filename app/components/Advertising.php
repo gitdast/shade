@@ -10,6 +10,12 @@ class Advertising extends UI\Control{
 	public function __construct(Selection $adds){
 		parent::__construct();
 		$this->adds = $adds;
+		foreach($this->adds as $add){
+			$add->puretitle = $add->title;
+			if(strpos($add->title, "http") !== false){
+				$add->title = "<a href='".$add->title."'>".$add->title."</a>";
+			}
+		}
 	}
 
 	public function render(){

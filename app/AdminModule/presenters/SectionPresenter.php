@@ -13,6 +13,7 @@ use Nette\Database\Connection,
 final class SectionPresenter extends BasePresenter{
 	
 	public $section;
+	public $content;
 	
 	public function startup(){
 		parent::startup();
@@ -50,6 +51,9 @@ final class SectionPresenter extends BasePresenter{
 			->addCondition($form::FILLED)
 			->addRule($form::IMAGE, 'Obrázek musí být JPEG, PNG nebo GIF.')
 			->addRule($form::MAX_FILE_SIZE, 'Maximální velikost souboru je 5 MB.', '5000000');
+		
+		$form->addText('title', 'Title')->setDefaultValue($this->content->title);
+		$form->addText('description', 'Description')->setDefaultValue($this->content->description);
 			
 		$form->addSubmit('save', 'Uložit');
 		$form->onSuccess[] = callback($this, 'contentFormSubmitted');
@@ -60,7 +64,9 @@ final class SectionPresenter extends BasePresenter{
 	public function contentFormSubmitted(Form $form){
 		$values = $form->getValues();
 
-		$this->context->createSections()->where(array('webname' => $this->section))->update(array('sectiontext' => $values['cont']));
+		$this->context->createSections()
+			->where(array('webname' => $this->section))
+			->update(array('sectiontext' => $values['cont'], 'title' => $values['title'], 'description' => $values['description']));
 		
 		if($values['image']->isOk()){
 			$filename = $values['image']->getSanitizedName();
@@ -73,8 +79,10 @@ final class SectionPresenter extends BasePresenter{
 	}
 	
 	public function getContent(){
-		$row = $this->context->createSections()->where(array('webname' => $this->section));
-		return $row->fetch()->sectiontext;
+		if(!$this->content){
+			$this->content = $this->context->createSections()->where(array('webname' => $this->section))->fetch();
+		}
+		return $this->content->sectiontext;
 	}
 	
 	private function getFileList(){

@@ -144,7 +144,7 @@ final class AdvertisingPresenter extends BasePresenter{
     }
 	
 	protected function createComponentEditForm($name){
-	    $form = new \EditForm($this);
+	    $form = new \EditForm($this, "web");
     	$form->folder = $this->folder;
 		$form->editId = $this->editId;
 		$form->table = $this->context->createAdds();

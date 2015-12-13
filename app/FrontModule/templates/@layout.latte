@@ -12,10 +12,13 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta name="description" content="Nette Framework web application skeleton">
-	<meta name="robots" content="{$robots}" n:ifset="$robots">
+	<meta name="description" content="{isset($description) ? $description : 'Studio SHADE, brandbuilding and design'}">
+	<meta name="author" content="Dast, dast@seznam.cz">
+	<meta name="copyright" content="Copyright @ 2015 - All rights reserved.">
+	<meta name="resource-type" content="document">
+	<meta name="robots" content="index, follow">
 
-	<title n:snippet=title>{ifset $title}{$title}{/ifset}</title>
+	<title n:snippet=title>{isset($title) ? $title : "Studio SHADE"}</title>
 
 	<link rel="stylesheet" href="{$basePath}/css/styles.css" type="text/css">
 	<link rel="stylesheet" href="{$basePath}/css/shade.css" type="text/css">
@@ -31,7 +34,7 @@
 
 <body>
 	{snippet bgd}
-	<div id="containerDown" class="background-{$section} backDown">
+	<div id="containerDown" class="background-{ucfirst($section)} backDown">
 		<div class="hidden background-"></div>
 		<div class="hidden background-About"></div>
 		<div class="hidden background-Contacts"></div>
@@ -39,7 +42,7 @@
 		<div class="hidden background-News"></div>
 		<div class="hidden background-Clients"></div>
     </div>
-    <div id="containerUp" class="background-{$sectionOld} backUp">
+    <div id="containerUp" class="background-{ucfirst($sectionOld)} backUp">
     </div>
     {/snippet}
     
@@ -50,7 +53,7 @@
 		<div id="topmenu">
         	{snippet topmenu}
 			{foreach $sections as $item}
-            	{if $item->webname !== $section}
+            	{if strtolower($item->webname) !== strtolower($section)}
 				<span><a class="ajax" n:href="SectionClick! $item->webname, $section">{$item->name}</a></span>
                 {else}
                 <span>{$item->name}</span>

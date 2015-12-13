@@ -52,13 +52,15 @@
 		{include #section}
 	</div>
 	
+	{form contentForm}
+		
 	<div id="tmce">
-		{form contentForm}
+		
 			{input cont}
 			<div class="buttons">
 				{input save}{input image}{label image /}
 			</div>
-		{/form}
+		
 	</div>
 	<div id="imgList">
 		<fieldset>
@@ -69,6 +71,16 @@
 		</fieldset>
 		<div class="cleaner"></div>
 	</div>
+	<div id="seo">
+		<fieldset>
+			<legend>SEO</legend>
+			<div>{label title /} {input title}</div>
+			<div>{label description /} {input description}</div>
+		</fieldset>
+	</div>
+	
+	{/form}
+	
 	<div id="help">
 		<div id="hcontrol">
 			<span>Help</span>

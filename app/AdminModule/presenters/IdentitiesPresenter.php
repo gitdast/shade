@@ -86,7 +86,7 @@ final class IdentitiesPresenter extends BasePresenter{
 				unlink($this->context->params['wwwDir'].'/'.$this->folder.$logo->detail);
 			}
 			$logo->delete();
-			$this->flashMessage('Logo bylo smazáno.');
+			$this->flashMessage('Logo bylo smazÃ??Ã‚Â¡no.');
 			$this->template->logosList = $this->context->createLogos()->order('order DESC');
 			$this->invalidateControl("identities");
 			$this->invalidateControl("logosList");
@@ -116,6 +116,7 @@ final class IdentitiesPresenter extends BasePresenter{
 
 		$form->addText('title', 'Název: ', 35)
 			->addRule($form::FILLED, 'Ještě nějaký ten title, please...');
+
 
 		$form->addSubmit('create', 'Nahrát');
 		$form->onSuccess[] = callback($this, 'uploadFormSubmitted');
@@ -161,6 +162,7 @@ final class IdentitiesPresenter extends BasePresenter{
 		$form->table = $this->context->createLogos();
 	    return $form;
 	}
+	
 	
 }
 

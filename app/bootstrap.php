@@ -34,10 +34,8 @@ $backendrouter[] = new Route("admin[/<presenter>][/<action>][/<id>]", "Default:d
 $container->router[] = $frontrouter = new RouteList("Front");
 $frontrouter[] = new Route("index.php", "Default:", Route::ONE_WAY);
 $frontrouter[] = new Route('', 'Default:', Route::ONE_WAY);
+$frontrouter[] = new Route("<section>", "Default:default");
 $frontrouter[] = new Route("<presenter>/<action>[/<id>]", "Default:default");
-
-
-
 
 
 // Configure and run the application!

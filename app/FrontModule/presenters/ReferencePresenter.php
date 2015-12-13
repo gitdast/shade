@@ -81,8 +81,11 @@ final class ReferencePresenter extends BasePresenter{
 		}
 	}
 	
-	public function renderDefault(){
-		//$this->template->showDetail = false;
+	public function beforeRender(){
+		parent::beforeRender();
+		$seo = $this->context->createReferences()->where(array('refname' => $this->refname))->fetch();
+		$this->template->title = $seo->title;
+		$this->template->description = $seo->description;
 	}
 
 }

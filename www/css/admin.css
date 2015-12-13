@@ -159,6 +159,9 @@ a.delete{
 	margin-top:20px;
 	float:left;
 }
+#seoref{
+	margin-top:15px;
+}
 /* ----- --------- ----- */
 
 
@@ -228,7 +231,7 @@ a.delete{
 /* ---------------------- sections ----*/
 
 #containerBgd{
-	position:absolute;
+	position:fixed;
 	top:0px;
 	left:0px;
 	overflow:hidden;
@@ -248,7 +251,7 @@ a.delete{
 	background:url(images/background2.jpg) center no-repeat;
 }
 .background-Services{
-	background:url(images/background3.jpg) center no-repeat;
+	background:url(images/background3.gif) center no-repeat;
 }
 .background-News{
 	background:url(images/background4.jpg) left no-repeat;
@@ -289,6 +292,14 @@ a.delete{
 #tmce input[type=file]{
 	float:right;
 }
+#tmce input[type=submit]{
+	line-height: 1.5;
+	font-size: 15px;
+	color:#fff;background-color:#e91e26;border-color:#d8151d;
+}
+#tmce input[type=submit]:hover{
+	color:#fff;background-color:#c1131a;border-color:#a11015;
+}
 #tmce label{
 	float:right;
 	line-height:25px;
@@ -297,18 +308,38 @@ a.delete{
 	margin-right:5px;
 }
 
+#seo{
+	position: relative;
+	width:850px;
+	margin:10px auto 30px;
+	z-index:5;
+}
+#seo fieldset{
+	background-color:transparent;
+	background-color:rgba(0,0,0,0.75);
+}
+#seo label{
+	display: inline-block;
+	width:15%;
+	line-height: 30px;
+}
+#seo input{
+	display: inline-block;
+	width:80%;
+}
+
 #imgList{
 	position:relative;
 	width:850px;
 	margin:10px auto 30px;
 	z-index:5;
 	/*background:url(images/bgd_content.png) top left repeat;*/
-	background-color:black;
-	background-color:rgba(0,0,0,0.75);
 }
 #imgList fieldset{
 	float:right;
 	clear:both;
+	background-color:black;
+	background-color:rgba(0,0,0,0.75);
 }
 #imgList ul{
 	padding:0px 10px 0px 20px;
