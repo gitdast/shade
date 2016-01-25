@@ -17,15 +17,22 @@
 }
 #menucont #topmenu{
 	position:relative;
-	margin:10px auto;
+	/*margin:10px auto;*/
 	font-size:14px;
 	white-space:nowrap;
+	display:inline-block;
 }
 #menucont #topmenu span{
 	display:inline-block;
 	padding:0px 60px;
 	color:#A8B400;
 	font-weight:bold;
+}
+#menucont #topmenu span:first-child{
+	padding-left:0px;
+}
+#menucont #topmenu span:last-child{
+	padding-right:0px;
 }
 #menucont #topmenu span a:link, #menucont #topmenu span a:visited{
 	color:#3B3B3B;
@@ -39,7 +46,16 @@
 	color:#A8B400;
 	text-decoration:none;
 }
-
+#menucont #topmenu .socialmenu{
+	position:absolute;
+	bottom:-36px;
+	right:0px;
+	line-height:21px;
+}
+.socialmenu img{
+	margin-left:7px;
+	vertical-align:middle;
+}
 
 #menucont #shademenu{
 	position:relative;
